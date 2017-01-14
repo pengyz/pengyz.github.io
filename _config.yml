@@ -39,7 +39,7 @@ since: 2016
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://pengyz.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -137,3 +137,11 @@ qiniu:
     folder: js
   css:
     folder: css
+
+
+algolia:
+    applicationID: P0YKUXAM8U
+    apiKey: 95fade03ad5eaa555736043af61b3c1c
+    adminApiKey: e2776355f7d67942b8d4122ab1ab43b2
+    indexName: pengyz-blog
+    chunkSize: 5000
