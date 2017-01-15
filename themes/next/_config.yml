@@ -135,6 +135,7 @@ font:
 social:
   GitHub: https://github.com/pengyz
   Twitter: https://twitter.com/SlayerNux
+  简书: http://www.jianshu.com/u/7b5906c282f6
 
 
 # Social Links Icons
@@ -149,6 +150,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  Linkedin: linkedin
 
 
 # Sidebar Avatar
