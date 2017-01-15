@@ -4,21 +4,21 @@
 
 # Site
 title: Pengyz的技术博客
-subtitle: 一个很爱折腾coding monkey
-description: 我的个人技术随笔
+subtitle: 一只爱折腾coding monkey
+description: Do one thing and do it well.
 author: Pengyz
 language: zh-Hans
 timezone: 
 
 
 # avata
-avatar: http://o8fsr2qhz.bkt.clouddn.com/images/avata.png
+avatar: http://o8fsr2qhz.bkt.clouddn.com/static/images/avata.png
 
 # 多说配置
-duoshuo_shortname: pengyz-blog
+# duoshuo_shortname: pengyz-blog
 
 # jiathis分享
-jiathis: true
+jiathis: false
 
 # google本地搜索 配合插件 安装命令 npm install hexo-generator-search --save
 search:
@@ -28,11 +28,11 @@ search:
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
-duoshuo_info:
-  ua_enable: true
-  admin_enable: false
-  user_id:
-  admin_nickname:
+# duoshuo_info:
+#   ua_enable: true
+#   admin_enable: false
+#   user_id:
+#   admin_nickname:
   
 # 站点建立时间  
 since: 2016
@@ -139,9 +139,9 @@ qiniu:
     folder: css
 
 
-algolia:
-    applicationID: P0YKUXAM8U
-    apiKey: 95fade03ad5eaa555736043af61b3c1c
-    adminApiKey: e2776355f7d67942b8d4122ab1ab43b2
-    indexName: pengyz-blog
-    chunkSize: 5000
+# algolia:
+#     applicationID: P0YKUXAM8U
+#     apiKey: 95fade03ad5eaa555736043af61b3c1c
+#     adminApiKey: e2776355f7d67942b8d4122ab1ab43b2
+#     indexName: pengyz-blog
+#     chunkSize: 5000
