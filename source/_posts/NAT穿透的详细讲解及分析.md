@@ -3,7 +3,7 @@ title: 转帖 NAT穿透的详细讲解及分析
 tags:
 - RakNet
 categories: 
-- 技术文档
+- 技术
 - NAT
 - udp
 ---
