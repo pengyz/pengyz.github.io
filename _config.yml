@@ -12,7 +12,7 @@ timezone:
 
 
 # avata
-avatar: http://o8fsr2qhz.bkt.clouddn.com/static/images/avata.png
+# avatar: http://o8fsr2qhz.bkt.clouddn.com/static/images/avata.png
 
 # 多说配置
 # duoshuo_shortname: pengyz-blog
@@ -90,7 +90,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -147,4 +148,22 @@ qiniu:
 #     chunkSize: 5000
 
 
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
 
