@@ -5,8 +5,7 @@ tags:
 - asm
 - C++
 categories:
-- reverse engineering
-- 技术
+- 编程
 ---
 
 
