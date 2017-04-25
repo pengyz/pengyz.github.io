@@ -1,7 +1,4 @@
 [submodule "themes/yilia"]
 	path = themes/yilia
-	url = D:/workspace/pengyz.github.io/themes/yilia
-	branch = master
-[submodule "theme/yilia"]
-	path = theme/yilia
 	url = https://github.com/pengyz/hexo-theme-yilia.git
+	branch = master
