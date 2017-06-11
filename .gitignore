@@ -9,3 +9,4 @@ public/
 qiniui-secret.json
 /_config.yml
 /themes/yilia/_config.yml
+*.swp
