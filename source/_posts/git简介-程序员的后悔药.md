@@ -42,7 +42,7 @@ unix是有diff和patch工具的，同样，linux也有。早些年的linux开发
 
 **工作区，暂存区 ，版本库**
 
-{% qnimg git-stage.png title:git存储区 alt:git存储区 %}
+{% asset_img git-stage.png git存储区 %}
 
 从上图可以看到，左侧为工作区，右侧版本库中，标记index的是暂存区，标记为master的则是master分支所包含的目录树。objects则是git的对象，它包含我们对文件的修改，文件目录，commit提交信息，tags等信息，它才是git中实际存储的内容。git使用索引的方式将git对象组织起来，最终呈现给我们的就是一个具体的代码版本。
 

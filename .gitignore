@@ -5,8 +5,4 @@ db.json
 node_modules/
 public/
 .deploy*/
-.qshell/
-qiniui-secret.json
-/_config.yml
-/themes/yilia/_config.yml
 *.swp
