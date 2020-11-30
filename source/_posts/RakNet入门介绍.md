@@ -16,6 +16,8 @@ categories:
 
 总体来说这个库功能完善，提供可靠的UDP传输，完善的插件机制。项目托管在[github](https://github.com/OculusVR/RakNet)目前已停止更新。关于它的具体用法，可以参考官网的例子和文档。
 
+<!-- more -->
+
 按照网上的说法 RakNet大概有如下特点：
 > Radnet有以下特点：
 
