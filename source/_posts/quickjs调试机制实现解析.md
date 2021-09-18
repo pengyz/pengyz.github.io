@@ -90,7 +90,7 @@ debugger接管了程序的执行过程，在程序暂停时，debugger可以清�
 
 ## quickjs调试功能实现
 
-### 1. JS函数功能执行入口
+### JS函数功能执行入口
 
 此函数是JS字节码解释的核心函数，极长，有**2543行**之巨，处理了方方面面的情况，整体是一个超级巨大的switch，根据字节码的opcode进行解释执行。
 
@@ -167,7 +167,7 @@ static JSValue JS_CallInternal(JSContext *caller_ctx, JSValueConst func_obj,
 }
 ````
 
-### 2. 调试功能入口
+### 调试功能入口
 ````C
 void js_debugger_check(JSContext* ctx, const uint8_t *cur_pc) {
     //调用js_debugger_check之前需要设置通知函数
@@ -281,7 +281,7 @@ void js_debugger_check(JSContext* ctx, const uint8_t *cur_pc) {
 }
 ````
 
-### 3. 前端调试命令处理
+### 前端调试命令处理
 
 ````C
 static int js_process_debugger_messages(JSDebuggerInfo *info, const uint8_t *cur_pc) {
@@ -351,7 +351,7 @@ done:
 在上面的原理解析部分，我们简单聊过了如何将字节码和源码做对应，现在我们要落实到实处，看一下在quickjs中，是如何存储这个映射关系，或者叫**调试信息**的，又是如何正确命中断点的。
 想要弄懂这些，需要深入到quickjs字节码生成和实现的一些细节，因为调试信息也是quickjs字节码的一部分，我们将聚焦于调试信息相关的部分带领大家做一个简单了解。
 
-### 1. js函数定义结构体
+### js函数定义结构体
 quickjs中，js代码的编译解析是以function为最小单元的，引擎会解析js源文件，以js函数为单位生成字节码，我们先来看一个js函数在引擎中的定义：
 
 ````C
@@ -394,7 +394,7 @@ typedef struct JSFunctionDef {
 ````
 上面的定义省略了和调试无关的部分，可以看到函数结构体中保存了函数中的标签符号信息，行号信息，pc2line(字节码到行号)映射信息，源码片段等。
 
-### 2. eval时解析js源码
+### eval时解析js源码
 
 ````C
 static JSValue __JS_EvalInternal(JSContext *ctx, JSValueConst this_obj,
@@ -436,7 +436,7 @@ static JSValue __JS_EvalInternal(JSContext *ctx, JSValueConst this_obj,
 }
 ````
 
-### 3. js parser解析时在字节码中保存行号信息
+### js parser解析时在字节码中保存行号信息
 
 js_parse_program是js parser的主体，通过一个JSParseState结构体对js进行语法解析并生成字节码，
 ````C
@@ -504,7 +504,7 @@ static void emit_op(JSParseState *s, uint8_t val)
 ````
 
 
-### 4. 创建函数并保存pc2line信息
+### 创建函数并保存pc2line信息
 
 ````C
 static JSValue js_create_function(JSContext *ctx, JSFunctionDef *fd)
@@ -717,7 +717,7 @@ static void compute_pc2line_info(JSFunctionDef *s)
 ````
 
 
-### 5. 使用pc2line信息检查是否命中断点
+### 使用pc2line信息检查是否命中断点
 引擎解释执行一条js字节码，都会调用**js_debugger_check**，其内部会调用**js_debugger_check_breakpoint**已检查是否命中断点，我们来看这个函数的实现细节：
 
 ````C
