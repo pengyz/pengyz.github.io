@@ -2,3 +2,6 @@
 	path = themes/yilia
 	url = https://github.com/pengyz/hexo-theme-yilia.git
 	branch = master
+[submodule "themes/next"]
+	path = themes/next
+	url = https://github.com.cnpmjs.org/theme-next/hexo-theme-next.git
