@@ -1,12 +1,13 @@
 ---
 title: quickjs调试机制实现解析
+tags:
+  - quickjs
+categories:
+  - 技术
+  - quickjs
 date: 2021-09-17 20:43:21
-tags: 
-- quickjs 
-categories: 
-- 技术
-- quickjs
 ---
+
 
 # 对调试器的最初印象
 
