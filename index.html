@@ -135,7 +135,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -146,7 +146,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -192,6 +192,195 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">前人的智慧结晶——有感于软件设计模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-13 21:49:45" itemprop="dateCreated datePublished" datetime="2022-03-13T21:49:45+08:00">2022-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-18 14:13:35" itemprop="dateModified" datetime="2022-03-18T14:13:35+08:00">2022-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="软件开发面临的问题"><a href="#软件开发面临的问题" class="headerlink" title="软件开发面临的问题"></a>软件开发面临的问题</h1><p>对于程序员来说，使用程序解决现实生活中的各种实际问题是我们的主要任务。</p>
+<p>在软件行业发展的早期，受限于硬件性能和计算机的普及程度，程序的规模都很小，解决的也都是一些相对简单的问题。在这个时期，结构化的程序设计被认为是软件开发的最佳实践。我们用一个个函数和变量来组织程序，以函数组织功能，以函数间的相互调用来组织起更复杂的逻辑，解决更实际的问题。</p>
+<p>但是随着IT行业的发展，在摩尔定律之下，硬件性能已经有了飞跃式的提升，软件所关注问题的复杂度也在成倍提升。但是这里存在一个矛盾点：机器可以处理的问题复杂度是远超人脑的，随着硬件性能的提升，这个差距还会进一步放大。这种急速膨胀的软件复杂度给程序员造成了沉重的脑力负担。所以IT圈发明了高层抽象，各种应用开发框架，编程范式，编程思想，用以缓解这种越发尖锐的问题。</p>
+<p>设计模式也是其中的一种重要的解决方案，在经典著作《设计模式 可复用面向对象软件的基础》一书中，Gof对前人的智慧进行了总结，提出了23种被广泛使用的设计模式并对它们进行了深入探讨。</p>
+<p>本文中我们并不对设计模式本身进行探讨，感兴趣的同学可以去通读设计模式全书，相信会大有裨益。我们在本文中所要讲述的是我自己对对设计模式的几点思考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/" class="post-title-link" itemprop="url">编程随想录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-13 18:20:03" itemprop="dateCreated datePublished" datetime="2022-03-13T18:20:03+08:00">2022-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-18 14:13:35" itemprop="dateModified" datetime="2022-03-18T14:13:35+08:00">2022-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="关于本系列"><a href="#关于本系列" class="headerlink" title="关于本系列"></a>关于本系列</h1><p>时间总是过得比我们预想中的快，从2012年开始实习算起，我作为程序员的职业生涯也走到了第十个年头。<br>十年总是一个值得我们停下来思考和总结的时间节点。这其中发生了很多的事情，我的生活也与十年前有了天翻地覆的不同。所以我想留下点属于我自己的，关于编程的思考。</p>
+<p>在计划中，这会是一个系列，主要聊编程相关的事情，留下自己对程序员的职业思考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +417,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-16 17:30:56" itemprop="dateModified" datetime="2022-03-16T17:30:56+08:00">2022-03-16</time>
+      <time title="修改时间：2022-03-18 14:13:35" itemprop="dateModified" datetime="2022-03-18T14:13:35+08:00">2022-03-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -994,194 +1183,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.png">
-      <meta itemprop="name" content="Alex Peng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alex的技术博客">
-      <meta itemprop="description" content="我的个人技术随笔">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alex的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" class="post-title-link" itemprop="url">线程安全问题探讨-并发，同步和线程安全</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-05-01 20:20:00" itemprop="dateCreated datePublished" datetime="2017-05-01T20:20:00+08:00">2017-05-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-16 16:20:05" itemprop="dateModified" datetime="2022-03-16T16:20:05+08:00">2022-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>如果你不确定，请先停下来，自己考虑这个问题并审视你的代码，直到你确定答案是YES。如果我们不能保证基本的线程安全，那我们可能要面临一个定时炸弹：程序可能会在一个只有天知道的时间点崩溃。</p>
-<p>很多人对这种多线程bug感到痛苦而绝望，因为它总在不经意间让你的程序变得一团糟。</p>
-<h1 id="为什么存在“线程安全”问题。"><a href="#为什么存在“线程安全”问题。" class="headerlink" title="为什么存在“线程安全”问题。"></a>为什么存在“线程安全”问题。</h1><p>从”线程”的语义上来说，可以理解为在一个进程中提供的多条代码执行路径。在概念上，进程是拥有资源的最小单位，线程是CPU调度的最小单位。在进程中，多个线程可以共享相同的资源。这种“共享”本身就带来了多线程编程中的<strong>线程安全</strong>问题。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avata.png">
-      <meta itemprop="name" content="Alex Peng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alex的技术博客">
-      <meta itemprop="description" content="我的个人技术随笔">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Alex的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">论UE4学习的正确方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-16 15:35:37" itemprop="dateCreated datePublished" datetime="2017-04-16T15:35:37+08:00">2017-04-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-16 16:20:05" itemprop="dateModified" datetime="2022-03-16T16:20:05+08:00">2022-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">UE4学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="学习是一件快乐的事"><a href="#学习是一件快乐的事" class="headerlink" title="学习是一件快乐的事"></a>学习是一件快乐的事</h1><p>对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。</p>
-<p>很多时候，学习使我们应对行业变化的一种方法和手段，为了跟得上这个迅速变化的行业，我们需要时刻关注行业热点并进行选择性的跟进，以期能够在职业道路上占得先机，又或者在自己的领域内进行深入学习，提升自己解决实际问题的能力，成为领域内的专家，才能升职加薪，让自己的财务更加自由。技术追求和金钱追求，在某些时候是可以统筹对待的。</p>
-<p>但是抛开这些客观因素，我们还应该看到，学习本身在主观上就应该是一件快乐的事情。“To be a better man” 本身就对技术人员充满了诱惑力：这种诱惑力使我们拒绝了游戏，拒绝了网剧，拒绝了娱乐节目，把每天的时间抽出来花在对技术的追求上。在我看来，一个好的技术人员，他应该首先是乐于学习的，这样才能拥有不断前进的原动力。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

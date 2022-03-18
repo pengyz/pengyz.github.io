@@ -6,7 +6,7 @@
   <link href="http://pengyz.com/atom.xml" rel="self"/>
   
   <link href="http://pengyz.com/"/>
-  <updated>2022-03-16T09:30:56.202Z</updated>
+  <updated>2022-03-18T06:13:35.567Z</updated>
   <id>http://pengyz.com/</id>
   
   <author>
@@ -17,11 +17,56 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>前人的智慧结晶——有感于软件设计模式</title>
+    <link href="http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
+    <published>2022-03-13T13:49:45.000Z</published>
+    <updated>2022-03-18T06:13:35.567Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;软件开发面临的问题&quot;&gt;&lt;a href=&quot;#软件开发面临的问题&quot; class=&quot;headerlink&quot; title=&quot;软件开发面临的问题&quot;&gt;&lt;/a&gt;软件开发面临的问题&lt;/h1&gt;&lt;p&gt;对于程序员来说，使用程序解决现实生活中的各种实际问题是我们的主要任务。&lt;/p&gt;
+&lt;p&gt;在软件行业发展的早期，受限于硬件性能和计算机的普及程度，程序的规模都很小，解决的也都是一些相对简单的问题。在这个时期，结构化的程序设计被认为是软件开发的最佳实践。我们用一个个函数和变量来组织程序，以函数组织功能，以函数间的相互调用来组织起更复杂的逻辑，解决更实际的问题。&lt;/p&gt;
+&lt;p&gt;但是随着IT行业的发展，在摩尔定律之下，硬件性能已经有了飞跃式的提升，软件所关注问题的复杂度也在成倍提升。但是这里存在一个矛盾点：机器可以处理的问题复杂度是远超人脑的，随着硬件性能的提升，这个差距还会进一步放大。这种急速膨胀的软件复杂度给程序员造成了沉重的脑力负担。所以IT圈发明了高层抽象，各种应用开发框架，编程范式，编程思想，用以缓解这种越发尖锐的问题。&lt;/p&gt;
+&lt;p&gt;设计模式也是其中的一种重要的解决方案，在经典著作《设计模式 可复用面向对象软件的基础》一书中，Gof对前人的智慧进行了总结，提出了23种被广泛使用的设计模式并对它们进行了深入探讨。&lt;/p&gt;
+&lt;p&gt;本文中我们并不对设计模式本身进行探讨，感兴趣的同学可以去通读设计模式全书，相信会大有裨益。我们在本文中所要讲述的是我自己对对设计模式的几点思考。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="阳光" scheme="http://pengyz.com/tags/%E9%98%B3%E5%85%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编程随想录</title>
+    <link href="http://pengyz.com/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
+    <id>http://pengyz.com/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/</id>
+    <published>2022-03-13T10:20:03.000Z</published>
+    <updated>2022-03-18T06:13:35.567Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;关于本系列&quot;&gt;&lt;a href=&quot;#关于本系列&quot; class=&quot;headerlink&quot; title=&quot;关于本系列&quot;&gt;&lt;/a&gt;关于本系列&lt;/h1&gt;&lt;p&gt;时间总是过得比我们预想中的快，从2012年开始实习算起，我作为程序员的职业生涯也走到了第十个年头。&lt;br&gt;十年总是一个值得我们停下来思考和总结的时间节点。这其中发生了很多的事情，我的生活也与十年前有了天翻地覆的不同。所以我想留下点属于我自己的，关于编程的思考。&lt;/p&gt;
+&lt;p&gt;在计划中，这会是一个系列，主要聊编程相关的事情，留下自己对程序员的职业思考。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="编程随想录" scheme="http://pengyz.com/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>quickjs调试机制实现解析</title>
     <link href="http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/"/>
     <id>http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/</id>
     <published>2021-09-17T12:43:21.000Z</published>
-    <updated>2022-03-16T09:30:56.202Z</updated>
+    <updated>2022-03-18T06:13:35.567Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;对调试器的最初印象&quot;&gt;&lt;a href=&quot;#对调试器的最初印象&quot; class=&quot;headerlink&quot; title=&quot;对调试器的最初印象&quot;&gt;&lt;/a&gt;对调试器的最初印象&lt;/h1&gt;&lt;p&gt;每个刚入行的程序员都有过对调试器一知半解的时候，那时我们使用 &lt;strong&gt;printf&lt;/strong&gt;，&lt;strong&gt;console.log&lt;/strong&gt;, &lt;strong&gt;System.out.println&lt;/strong&gt; 等进行错误定位，统称&lt;strong&gt;打印输出调试法&lt;/strong&gt;，这个方法至今在服务器后端等无法停机更无法挂调试器的地方大行其道，我们叫它&lt;strong&gt;log日志&lt;/strong&gt;。&lt;br&gt;当我们工作了一段时间之后，逐渐发现了编程世界的复杂性，有些问题无法通过简单的打印来定位：&lt;/p&gt;
