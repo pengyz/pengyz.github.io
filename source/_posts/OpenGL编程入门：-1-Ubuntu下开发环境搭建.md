@@ -1,6 +1,7 @@
 ---
 title: OpenGL编程入门： 1.Ubuntu下开发环境搭建
 date: 2017-09-02 17:05:02
+updated: 2017-09-02 17:05:02
 tags:
 - 计算机图形学
 - OpenGL编程入门

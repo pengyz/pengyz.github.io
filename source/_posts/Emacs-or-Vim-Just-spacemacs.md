@@ -1,6 +1,7 @@
 ---
 title: Emacs or Vim? Just spacemacs !
 date: 2017-06-17 01:37:50
+updated: 2017-06-17 01:37:50
 tags: 
 - 编辑器
 categories:
