@@ -6,7 +6,7 @@
   <link href="http://pengyz.com/atom.xml" rel="self"/>
   
   <link href="http://pengyz.com/"/>
-  <updated>2022-03-18T06:13:35.567Z</updated>
+  <updated>2022-03-21T02:52:03.274Z</updated>
   <id>http://pengyz.com/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>跳转，执行，返回：从汇编看函数调用</title>
+    <link href="http://pengyz.com/2022/03/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
+    <id>http://pengyz.com/2022/03/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/</id>
+    <published>2022-03-21T02:26:25.000Z</published>
+    <updated>2022-03-21T02:52:03.274Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从底层看程序执行过程：寄存器，cpu和x86汇编简介</title>
+    <link href="http://pengyz.com/2022/03/21/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/"/>
+    <id>http://pengyz.com/2022/03/21/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/</id>
+    <published>2022-03-21T02:08:18.000Z</published>
+    <updated>2022-03-21T02:52:13.094Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本篇是我本人博客中的专题“追根溯源 从C++到汇编”中的开篇。这是我第一次尝试写一个系列的文章出来与大家分享。如果有什么疏漏，欢迎大家指正。&lt;/p&gt;
+&lt;p&gt;为了阐述C++和汇编的关系，我觉着有必要简单介绍下汇编知识和一些计算机的基本组成。本篇的内容尽量保持简短。本篇的目的是为了后续的讲解做一个基础性的铺垫与简介，点到即止。&lt;/p&gt;
+&lt;p&gt;本文假定读者没有任何汇编基础知识。如果有读者对汇编很熟悉，可以略过本篇，参看系列后续的文章。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
   
   <entry>
     <title>前人的智慧结晶——有感于软件设计模式</title>
@@ -403,19 +447,13 @@
   
   <entry>
     <title>追根溯源 从C++到汇编</title>
-    <link href="http://pengyz.com/2017/01/15/%E4%BB%A3%E7%A0%81%E6%94%BB%E9%98%B2%E4%B9%8B%E9%81%93-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/"/>
-    <id>http://pengyz.com/2017/01/15/%E4%BB%A3%E7%A0%81%E6%94%BB%E9%98%B2%E4%B9%8B%E9%81%93-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/</id>
+    <link href="http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/"/>
+    <id>http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/</id>
     <published>2017-01-15T06:52:42.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2022-03-21T02:53:06.924Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天，我想讲的一个话题就是，作为一个C++程序员，&lt;strong&gt;如何从汇编层面理解C和C++&lt;strong&gt;。又或者是，&lt;/strong&gt;如何理解C++中的对象模型&lt;/strong&gt;，如何理解函数调用本身，如何增强程序的安全性等等。我想，这会是一个专题，在这里，我们会讨论</summary>
-        
-      
+    <summary type="html">&lt;p&gt;今天，我想讲的一个话题就是，作为一个C++程序员，&lt;strong&gt;如何从汇编层面理解C和C++&lt;strong&gt;。又或者是，&lt;/strong&gt;如何理解C++中的对象模型&lt;/strong&gt;，如何理解函数调用本身，如何增强程序的安全性等等。我想，这会是一个专题，在这里，我们会讨论一些更底层和更深入的话题。&lt;br&gt;我希望我能把我所掌握的东西，以一个更生动的形象展示给大家。&lt;/p&gt;</summary>
     
     
     
