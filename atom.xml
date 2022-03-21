@@ -6,7 +6,7 @@
   <link href="http://pengyz.com/atom.xml" rel="self"/>
   
   <link href="http://pengyz.com/"/>
-  <updated>2022-03-21T02:52:03.274Z</updated>
+  <updated>2022-03-21T02:26:25.000Z</updated>
   <id>http://pengyz.com/</id>
   
   <author>
@@ -21,33 +21,10 @@
     <link href="http://pengyz.com/2022/03/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
     <id>http://pengyz.com/2022/03/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/</id>
     <published>2022-03-21T02:26:25.000Z</published>
-    <updated>2022-03-21T02:52:03.274Z</updated>
+    <updated>2022-03-21T02:26:25.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
-    
-    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从底层看程序执行过程：寄存器，cpu和x86汇编简介</title>
-    <link href="http://pengyz.com/2022/03/21/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/"/>
-    <id>http://pengyz.com/2022/03/21/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/</id>
-    <published>2022-03-21T02:08:18.000Z</published>
-    <updated>2022-03-21T02:52:13.094Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;本篇是我本人博客中的专题“追根溯源 从C++到汇编”中的开篇。这是我第一次尝试写一个系列的文章出来与大家分享。如果有什么疏漏，欢迎大家指正。&lt;/p&gt;
-&lt;p&gt;为了阐述C++和汇编的关系，我觉着有必要简单介绍下汇编知识和一些计算机的基本组成。本篇的内容尽量保持简短。本篇的目的是为了后续的讲解做一个基础性的铺垫与简介，点到即止。&lt;/p&gt;
-&lt;p&gt;本文假定读者没有任何汇编基础知识。如果有读者对汇编很熟悉，可以略过本篇，参看系列后续的文章。&lt;/p&gt;</summary>
     
     
     
@@ -65,7 +42,7 @@
     <link href="http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
     <published>2022-03-13T13:49:45.000Z</published>
-    <updated>2022-03-18T06:13:35.567Z</updated>
+    <updated>2022-03-13T13:49:45.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;软件开发面临的问题&quot;&gt;&lt;a href=&quot;#软件开发面临的问题&quot; class=&quot;headerlink&quot; title=&quot;软件开发面临的问题&quot;&gt;&lt;/a&gt;软件开发面临的问题&lt;/h1&gt;&lt;p&gt;对于程序员来说，使用程序解决现实生活中的各种实际问题是我们的主要任务。&lt;/p&gt;
@@ -90,7 +67,7 @@
     <link href="http://pengyz.com/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
     <id>http://pengyz.com/2022/03/13/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/</id>
     <published>2022-03-13T10:20:03.000Z</published>
-    <updated>2022-03-18T06:13:35.567Z</updated>
+    <updated>2022-03-13T10:20:03.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;关于本系列&quot;&gt;&lt;a href=&quot;#关于本系列&quot; class=&quot;headerlink&quot; title=&quot;关于本系列&quot;&gt;&lt;/a&gt;关于本系列&lt;/h1&gt;&lt;p&gt;时间总是过得比我们预想中的快，从2012年开始实习算起，我作为程序员的职业生涯也走到了第十个年头。&lt;br&gt;十年总是一个值得我们停下来思考和总结的时间节点。这其中发生了很多的事情，我的生活也与十年前有了天翻地覆的不同。所以我想留下点属于我自己的，关于编程的思考。&lt;/p&gt;
@@ -110,7 +87,7 @@
     <link href="http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/"/>
     <id>http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/</id>
     <published>2021-09-17T12:43:21.000Z</published>
-    <updated>2022-03-18T06:13:35.567Z</updated>
+    <updated>2021-09-17T12:43:21.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;对调试器的最初印象&quot;&gt;&lt;a href=&quot;#对调试器的最初印象&quot; class=&quot;headerlink&quot; title=&quot;对调试器的最初印象&quot;&gt;&lt;/a&gt;对调试器的最初印象&lt;/h1&gt;&lt;p&gt;每个刚入行的程序员都有过对调试器一知半解的时候，那时我们使用 &lt;strong&gt;printf&lt;/strong&gt;，&lt;strong&gt;console.log&lt;/strong&gt;, &lt;strong&gt;System.out.println&lt;/strong&gt; 等进行错误定位，统称&lt;strong&gt;打印输出调试法&lt;/strong&gt;，这个方法至今在服务器后端等无法停机更无法挂调试器的地方大行其道，我们叫它&lt;strong&gt;log日志&lt;/strong&gt;。&lt;br&gt;当我们工作了一段时间之后，逐渐发现了编程世界的复杂性，有些问题无法通过简单的打印来定位：&lt;/p&gt;
@@ -145,7 +122,7 @@
     <link href="http://pengyz.com/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/"/>
     <id>http://pengyz.com/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/</id>
     <published>2020-11-26T16:48:05.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2020-11-26T16:48:05.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;1-重构版Launcher的技术方案&quot;&gt;&lt;a href=&quot;#1-重构版Launcher的技术方案&quot; class=&quot;headerlink&quot; title=&quot;1. 重构版Launcher的技术方案&quot;&gt;&lt;/a&gt;1. 重构版Launcher的技术方案&lt;/h1&gt;&lt;h2 id=&quot;简单的对比&quot;&gt;&lt;a href=&quot;#简单的对比&quot; class=&quot;headerlink&quot; title=&quot;简单的对比&quot;&gt;&lt;/a&gt;简单的对比&lt;/h2&gt;&lt;p&gt;多厂商Launcher本身是一个使用QT作为界面库，CEF作为内嵌浏览器，使用C++语言进行开发的桌面程序。多厂商Launcher存在很多的问题，在决定重构之后，对后续的技术方案进行了一番考量，具体的对比如下：&lt;/p&gt;
@@ -207,7 +184,7 @@
     <link href="http://pengyz.com/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/"/>
     <id>http://pengyz.com/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/</id>
     <published>2018-04-06T15:23:54.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2018-04-06T15:23:54.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;问题的开端&quot;&gt;&lt;a href=&quot;#问题的开端&quot; class=&quot;headerlink&quot; title=&quot;问题的开端&quot;&gt;&lt;/a&gt;问题的开端&lt;/h1&gt;&lt;p&gt;一直以来，我都认为我算是一名合格的程序员，或者叫IT工程师。理由如下：&lt;/p&gt;
@@ -238,7 +215,7 @@
     <link href="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/"/>
     <id>http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/</id>
     <published>2017-11-26T16:48:05.000Z</published>
-    <updated>2022-03-16T08:20:05.310Z</updated>
+    <updated>2017-11-26T16:48:05.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;这是一篇转帖，写的实在精彩。原贴出自&lt;em&gt;看雪论坛&lt;/em&gt;，原贴地址请 &lt;a href=&quot;http://bbs.pediy.com/thread-131961.htm&quot;&gt;戳这里&lt;/a&gt; &lt;/p&gt;
@@ -263,7 +240,7 @@
     <link href="http://pengyz.com/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/"/>
     <id>http://pengyz.com/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/</id>
     <published>2017-10-22T14:14:09.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-10-22T14:14:09.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;我是在去年订阅的《硅谷来信》，具体的月份已记不得，只记得天气很凉，大概是在十一月或者十二月。&lt;/p&gt;
@@ -284,7 +261,7 @@
     <link href="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
     <published>2017-09-02T09:05:02.000Z</published>
-    <updated>2022-03-16T08:20:05.310Z</updated>
+    <updated>2017-09-02T09:05:02.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;计算机图形学与OpenGL&quot;&gt;&lt;a href=&quot;#计算机图形学与OpenGL&quot; class=&quot;headerlink&quot; title=&quot;计算机图形学与OpenGL&quot;&gt;&lt;/a&gt;计算机图形学与OpenGL&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/279486?fr=aladdin&quot;&gt;计算机图形学&lt;/a&gt;主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年&lt;a href=&quot;https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E/207123?fr=aladdin&quot;&gt;虚拟现实(VR)&lt;/a&gt;和&lt;a href=&quot;https://baike.baidu.com/item/%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E/1889025&quot;&gt;增强现实(AR)&lt;/a&gt;的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。&lt;/p&gt;
@@ -308,7 +285,7 @@
     <link href="http://pengyz.com/2017/06/17/Emacs-or-Vim-Just-spacemacs/"/>
     <id>http://pengyz.com/2017/06/17/Emacs-or-Vim-Just-spacemacs/</id>
     <published>2017-06-16T17:37:50.000Z</published>
-    <updated>2022-03-16T08:20:05.310Z</updated>
+    <updated>2017-06-16T17:37:50.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;其实很早之前就接触过emacs，大概是被&lt;strong&gt;Dr. 王垠&lt;/strong&gt;蛊惑到了，也许是自己本来就喜欢一些比较geek的东西来折腾，那时候开始尝试使用emacs。也学习过emacs的elisp，写过简单的函数，自己写过配置文件，但是自己主要的工作还是要在windows下完成，开发工具也主要是使用VS，所以emacs也就逐渐沦为了写org的工具。接触VIM大概是在大学的计算机课程上，彻底地被VIM的模式搞昏了头并对此深恶痛绝。&lt;/p&gt;
@@ -330,7 +307,7 @@
     <link href="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/"/>
     <id>http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/</id>
     <published>2017-06-11T09:56:19.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-06-11T09:56:19.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;从软件开发谈“后悔药”的必要性&quot;&gt;&lt;a href=&quot;#从软件开发谈“后悔药”的必要性&quot; class=&quot;headerlink&quot; title=&quot;从软件开发谈“后悔药”的必要性&quot;&gt;&lt;/a&gt;从软件开发谈“后悔药”的必要性&lt;/h1&gt;&lt;p&gt;每当我们作出一个决定，我们就必然要承担它带来的后果。很多时候，面对未来的不确定性，我们会作出错误的决定。这时我们往往追悔莫及。但是这个世界上却永远不存在“后悔药”。就目前的科技水平来看，我们无力操纵时空，篡改历史。&lt;/p&gt;
@@ -346,11 +323,34 @@
   </entry>
   
   <entry>
+    <title>从底层看程序执行过程：寄存器，cpu和x86汇编简介</title>
+    <link href="http://pengyz.com/2017/06/04/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/"/>
+    <id>http://pengyz.com/2017/06/04/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/</id>
+    <published>2017-06-04T02:08:18.000Z</published>
+    <updated>2022-03-21T02:08:18.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本篇是我本人博客中的专题“追根溯源 从C++到汇编”中的开篇。这是我第一次尝试写一个系列的文章出来与大家分享。如果有什么疏漏，欢迎大家指正。&lt;/p&gt;
+&lt;p&gt;为了阐述C++和汇编的关系，我觉着有必要简单介绍下汇编知识和一些计算机的基本组成。本篇的内容尽量保持简短。本篇的目的是为了后续的讲解做一个基础性的铺垫与简介，点到即止。&lt;/p&gt;
+&lt;p&gt;本文假定读者没有任何汇编基础知识。如果有读者对汇编很熟悉，可以略过本篇，参看系列后续的文章。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>线程安全问题探讨-并发，同步和线程安全</title>
     <link href="http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/"/>
     <id>http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/</id>
     <published>2017-05-01T12:20:00.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-05-01T12:20:00.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;如果你不确定，请先停下来，自己考虑这个问题并审视你的代码，直到你确定答案是YES。如果我们不能保证基本的线程安全，那我们可能要面临一个定时炸弹：程序可能会在一个只有天知道的时间点崩溃。&lt;/p&gt;
@@ -375,7 +375,7 @@
     <link href="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/"/>
     <id>http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/</id>
     <published>2017-04-16T07:35:37.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-04-16T07:35:37.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;学习是一件快乐的事&quot;&gt;&lt;a href=&quot;#学习是一件快乐的事&quot; class=&quot;headerlink&quot; title=&quot;学习是一件快乐的事&quot;&gt;&lt;/a&gt;学习是一件快乐的事&lt;/h1&gt;&lt;p&gt;对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。&lt;/p&gt;
@@ -398,7 +398,7 @@
     <link href="http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2017-04-13T12:44:45.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-04-13T12:44:45.000Z</updated>
     
     
       
@@ -428,7 +428,7 @@
     <link href="http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E5%BC%80%E7%AF%87/"/>
     <id>http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E5%BC%80%E7%AF%87/</id>
     <published>2017-04-13T08:09:41.000Z</published>
-    <updated>2022-03-16T08:20:05.310Z</updated>
+    <updated>2017-04-13T08:09:41.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;关于本系列文章&quot;&gt;&lt;a href=&quot;#关于本系列文章&quot; class=&quot;headerlink&quot; title=&quot;关于本系列文章&quot;&gt;&lt;/a&gt;关于本系列文章&lt;/h1&gt;&lt;p&gt;本系列文章是我个人学习UE4游戏制作过程中一些随笔性质的记录性文章。因为我个人并不属于游戏行业但是对于自己动手做游戏又充满了兴趣，所以花了些时间了解了下一些游戏制作相关的内容。可能点点滴滴的东西都比较初级而且浅显，但是我会仔细地去记录自己学习的过程，希望也对后来者能够有所启发，这样也就达到了目的。&lt;/p&gt;
@@ -450,7 +450,7 @@
     <link href="http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/"/>
     <id>http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/</id>
     <published>2017-01-15T06:52:42.000Z</published>
-    <updated>2022-03-21T02:53:06.924Z</updated>
+    <updated>2017-01-15T06:52:42.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;今天，我想讲的一个话题就是，作为一个C++程序员，&lt;strong&gt;如何从汇编层面理解C和C++&lt;strong&gt;。又或者是，&lt;/strong&gt;如何理解C++中的对象模型&lt;/strong&gt;，如何理解函数调用本身，如何增强程序的安全性等等。我想，这会是一个专题，在这里，我们会讨论一些更底层和更深入的话题。&lt;br&gt;我希望我能把我所掌握的东西，以一个更生动的形象展示给大家。&lt;/p&gt;</summary>
@@ -471,7 +471,7 @@
     <link href="http://pengyz.com/2017/01/10/%E5%B0%8F%E8%AE%AE%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"/>
     <id>http://pengyz.com/2017/01/10/%E5%B0%8F%E8%AE%AE%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/</id>
     <published>2017-01-09T17:28:42.000Z</published>
-    <updated>2022-03-16T08:20:05.314Z</updated>
+    <updated>2017-01-09T17:28:42.000Z</updated>
     
     
       
@@ -498,7 +498,7 @@
     <link href="http://pengyz.com/2016/09/07/RakNet%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/"/>
     <id>http://pengyz.com/2016/09/07/RakNet%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/</id>
     <published>2016-09-07T13:00:14.000Z</published>
-    <updated>2022-03-16T08:20:05.310Z</updated>
+    <updated>2016-09-07T13:00:14.000Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;RakNet简单介绍&quot;&gt;&lt;a href=&quot;#RakNet简单介绍&quot; class=&quot;headerlink&quot; title=&quot;RakNet简单介绍&quot;&gt;&lt;/a&gt;RakNet简单介绍&lt;/h1&gt;&lt;p&gt;最近由于项目需要简单看了一下RakNet。&lt;br&gt;这是一个C++开发的基于UDP的开源网络库，具有良好的跨平台特性，主要用于网络游戏的通信，也可以用在各种网络软件上用于处理网络通信。&lt;/p&gt;
