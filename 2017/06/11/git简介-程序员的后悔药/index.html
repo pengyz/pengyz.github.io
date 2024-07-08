@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="从软件开发谈“后悔药”的必要性每当我们作出一个决定，我们就必然要承担它带来的后果。很多时候，面对未来的不确定性，我们会作出错误的决定。这时我们往往追悔莫及。但是这个世界上却永远不存在“后悔药”。就目前的科技水平来看，我们无力操纵时空，篡改历史。 万幸的是，作为程序员，我们却有工具来在软件开发的过程中随时给自己安利一发“后悔药”尝尝咸淡。这种后悔药叫做“版本控制”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git简介-程序员的后悔药">
+<meta property="og:url" content="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="从软件开发谈“后悔药”的必要性每当我们作出一个决定，我们就必然要承担它带来的后果。很多时候，面对未来的不确定性，我们会作出错误的决定。这时我们往往追悔莫及。但是这个世界上却永远不存在“后悔药”。就目前的科技水平来看，我们无力操纵时空，篡改历史。 万幸的是，作为程序员，我们却有工具来在软件开发的过程中随时给自己安利一发“后悔药”尝尝咸淡。这种后悔药叫做“版本控制”。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/git-stage.png">
+<meta property="article:published_time" content="2017-06-11T09:56:19.000Z">
+<meta property="article:modified_time" content="2017-06-11T09:56:19.000Z">
+<meta property="article:author" content="Alex Peng">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/git-stage.png">
+
+
+<link rel="canonical" href="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/","path":"2017/06/11/git简介-程序员的后悔药/","title":"git简介-程序员的后悔药"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>git简介-程序员的后悔药 | Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E8%B0%88%E2%80%9C%E5%90%8E%E6%82%94%E8%8D%AF%E2%80%9D%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">从软件开发谈“后悔药”的必要性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">git的一些基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="git简介-程序员的后悔药 | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git简介-程序员的后悔药
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-06-11 17:56:19" itemprop="dateCreated datePublished" datetime="2017-06-11T17:56:19+08:00">2017-06-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="从软件开发谈“后悔药”的必要性"><a href="#从软件开发谈“后悔药”的必要性" class="headerlink" title="从软件开发谈“后悔药”的必要性"></a>从软件开发谈“后悔药”的必要性</h1><p>每当我们作出一个决定，我们就必然要承担它带来的后果。很多时候，面对未来的不确定性，我们会作出错误的决定。这时我们往往追悔莫及。但是这个世界上却永远不存在“后悔药”。就目前的科技水平来看，我们无力操纵时空，篡改历史。</p>
+<p>万幸的是，作为程序员，我们却有工具来在软件开发的过程中随时给自己安利一发“后悔药”尝尝咸淡。这种后悔药叫做“版本控制”。</p>
+<span id="more"></span>
+
+<p>自计算机发明以来，IT这个行业乘着web，移动互联网的东风，开始了高速的发展：各种技术，框架，解决方案层出不穷。随着计算机的性能越来越强，人们有了越来越大的野心，希望借助计算机完成更多的工作，服务于现实生活。这种野望带来了软件规模的急剧膨胀。程序员面对这越来越复杂的情況，开始进入了大规模的协作开发阶段。这时候摆在人们面前的问题有很多，比如：</p>
+<ol>
+<li>怎样才能顺利的协作？我改的函数别人也改过，怎么才能把大家的修改合并在一起？</li>
+<li>某个版本出现问题，如何能够方便地进行版本回滚以挽救自己的饭碗？</li>
+<li>代码写到一半的时候老大通知线上的bug需要紧急修复，自己这里写到一半的代码还跑不起来，how to play?</li>
+<li>我们发布了1.0版本，然后发布了2.0版本，测试发现2.0版本存在某个bug而1.0版本却没有，怎么才能快速排查并定位问题？</li>
+</ol>
+<p>这些情况都要求我们能够有效地管理程序的各种版本，形成一个可以回溯的版本历史记录，以便我们可以通过对版本历史的回溯操作来达到自如切换的目的。</p>
+<p>也许你听说过svn，但是我们今天要介绍的却是版本控制工具里的”大杀器”: git</p>
+<p>git被证明是目前版本控制工具里的最佳实践。它的设计者是大名鼎鼎的顶级黑客<strong>linus torvalds</strong>，linux内核的原作者，linux开源社区的领导者。linus以一个文件系统设计者的思维高度设计了分布式版本控制工具git，其先进的设计理念让这个工具迅速风靡，可以说拯救了无数程序员的饭碗。</p>
+<p>正所谓前人栽树后人乘凉，在此感谢linus大神间接地赏了口饭吃。</p>
+<h1 id="git的一些基本概念"><a href="#git的一些基本概念" class="headerlink" title="git的一些基本概念"></a>git的一些基本概念</h1><p>总体上来说，git是有一些复杂的，暂存区，分支，HEAD指针，rebase,merge，一下会有很多的概念。<br>首先，git的一个特性就是，它管理的是“修改”本身，而是文件。git保存了文件的一个基础版本并维护了针对该文件的所有修改，而不是为文件的每个历史版本做一个记录。这也似git速度快的一个主要原因。</p>
+<p>unix是有diff和patch工具的，同样，linux也有。早些年的linux开发中，linus就是使用这两个工具来手动合并代码修改的。估计是长期手动合并代码的后遗症，linus设计git的时候就引入了这两个备受他信赖的工具，作为git的基础。git就是一整套构建于diff，patch，hash-1基础之上的“修改历史”数据库，我们通过git命令操作这个数据库，来方便地管理我们的程序版本。git上各种眼花缭乱的操作，branch，rebase，merge等等，都和git的这种底层设计密不可分。</p>
+<p>关于git的叙述，可以写出几本书，对于有志于系统地学习git使用的同学，简爱那一阅读这些书以获得系统的知识。本文只git的一个简单介绍。个人认为，用过svn的人对git最大的不理解来自于git的 “add commit”的提交方式。每个文件必须通过add添加到版本库，然后使用commit提交。很多git的新手会产生这样的疑惑：为什么要把提交分成两步？这个设计的背后其实涉及到git的一组核心概念:</p>
+<p><strong>工作区，暂存区 ，版本库</strong></p>
+<img src="/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/git-stage.png" class title="git存储区">
+
+<p>从上图可以看到，左侧为工作区，右侧版本库中，标记index的是暂存区，标记为master的则是master分支所包含的目录树。objects则是git的对象，它包含我们对文件的修改，文件目录，commit提交信息，tags等信息，它才是git中实际存储的内容。git使用索引的方式将git对象组织起来，最终呈现给我们的就是一个具体的代码版本。</p>
+<p>git中，git的数据库位于我们执行git init的根目录中，是一个名为.git的隐藏文件夹。工作区就是我们进行编码工作的地方，它位于版本库之外。当我们执行git add添加了某个文件之后，git就会把我们针对该文件的修改生成objects对象，这样这个修改就进入了暂存区。暂存区的内容还没有被有效地组织起来，所以我们使用git status，git仍然会提示这些文件，它们的状态被标记为added。理解了这个概念，现在想想，为什么当我们添加了大量的新文件的时候，git会卡？因为git忙着为每个被添加的文件执行diff，比较差异并生成相应的对象存放到暂存区。当我们执行commit提交之后，git会生成一个commit对象来引用我们所有的修改以此来将修改从暂存区真正地提交到版本库中。这个提交同时持有它的父提交的hash-1值。这样提交就可以被正确地索引，我们的提交历史也会被正确地组织起来。</p>
+<p>大致有这个印象之后，我们就可以立即一些git操作背后的魔法，比如git checkout仅仅是从git版本库中提取指定文件的指定版本覆盖到工作区。git branch也仅仅是添加一个branch指针指向了某个固定的commit等等。</p>
+<p>git的一切“魔法”都基于git的这种组织机构来实现。</p>
+<p>git是linus为自己设计的用以管理linux内核的工具。它是久经考验的，它分布式的管理方式和方便的分支切换工作流程，强大的多分支合并和历史回溯功能特别适合于大规模的协作开发。git的威力在linux内核代码管理上得到了充分的验证。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>这篇的内容不算很长，我们还没有讲过git的一些基础操作，就这样草草结束好像不是太好。不过也也没关系，git说到底还是一个工具，一个提高程序员生产力并在必要时候保护他们脆弱饭碗的方式。对于工具的学习，更多时候是靠着不断的使用来巩固和提高的。</p>
+<p>如果你在实际项目中使用git并且你的开发团队能够正确地使用它，相信你很快就能学会git的使用并惊叹于它的灵活和强大。如果有机会，我想我们会在后续讨论一些git的使用技巧。git中的一些看似神奇的高端操作，正式它有别于其它版本控制工具的关键。掌握了它们，才不会让git明珠蒙尘。</p>
+<p>看着项目组其它人熟练地使用git命令行来操作git，真的惊叹于git命令行的神奇，其作为一个命令行管理工具，自有其道理。git命令行相比于GUI工具，有着更大的灵活性和便利性，值得每个希望深入使用git的开发人员认真学习。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/06/04/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/" rel="prev" title="从底层看程序执行过程：寄存器，cpu和x86汇编简介">
+                  <i class="fa fa-angle-left"></i> 从底层看程序执行过程：寄存器，cpu和x86汇编简介
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/06/17/Emacs-or-Vim-Just-spacemacs/" rel="next" title="Emacs or Vim? Just spacemacs !">
+                  Emacs or Vim? Just spacemacs ! <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

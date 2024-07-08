@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这是一篇转帖，写的实在精彩。原贴出自看雪论坛，原贴地址请 戳这里  如果原作者对此转帖行为有任何异议，请联系本人撤销。 什么是NAT？为什么要使用NAT？NAT是将私有地址转换为合法IP地址的技术，通俗的讲就是将内网与内网通信时怎么将内网私有IP地址转换为可在网络中传播的合法IP地址。NAT的出现完美地解决了lP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转帖 NAT穿透的详细讲解及分析">
+<meta property="og:url" content="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="这是一篇转帖，写的实在精彩。原贴出自看雪论坛，原贴地址请 戳这里  如果原作者对此转帖行为有任何异议，请联系本人撤销。 什么是NAT？为什么要使用NAT？NAT是将私有地址转换为合法IP地址的技术，通俗的讲就是将内网与内网通信时怎么将内网私有IP地址转换为可在网络中传播的合法IP地址。NAT的出现完美地解决了lP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-26T16:48:05.000Z">
+<meta property="article:modified_time" content="2017-11-26T16:48:05.000Z">
+<meta property="article:author" content="Alex Peng">
+<meta property="article:tag" content="RakNet">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/","path":"2017/11/27/NAT穿透的详细讲解及分析/","title":"转帖 NAT穿透的详细讲解及分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>转帖 NAT穿透的详细讲解及分析 | Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFNAT%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8NAT%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是NAT？为什么要使用NAT？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NAT%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">NAT的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8UDP%E3%80%81TCP%E7%A9%BF%E9%80%8FNAT"><span class="nav-number">1.2.</span> <span class="nav-text">使用UDP、TCP穿透NAT</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="转帖 NAT穿透的详细讲解及分析 | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          转帖 NAT穿透的详细讲解及分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-27 00:48:05" itemprop="dateCreated datePublished" datetime="2017-11-27T00:48:05+08:00">2017-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/NAT/" itemprop="url" rel="index"><span itemprop="name">NAT</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/NAT/udp/" itemprop="url" rel="index"><span itemprop="name">udp</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>这是一篇转帖，写的实在精彩。原贴出自<em>看雪论坛</em>，原贴地址请 <a target="_blank" rel="noopener" href="http://bbs.pediy.com/thread-131961.htm">戳这里</a> </p>
+<p><strong>如果原作者对此转帖行为有任何异议，请联系本人撤销。</strong></p>
+<h1 id="什么是NAT？为什么要使用NAT？"><a href="#什么是NAT？为什么要使用NAT？" class="headerlink" title="什么是NAT？为什么要使用NAT？"></a>什么是NAT？为什么要使用NAT？</h1><p>NAT是将私有地址转换为合法IP地址的技术，通俗的讲就是将内网与内网通信时怎么将内网私有IP地址转换为可在网络中传播的合法IP地址。NAT的出现完美地解决了lP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。  </p>
+<span id="more"></span>
+
+<h2 id="NAT的分类"><a href="#NAT的分类" class="headerlink" title="NAT的分类"></a>NAT的分类</h2><p>STUN标准中，根据内部终端的地址(LocalIP:LocalPort)到NAT出口的公网地址(PublicIP:PublicPort)的映射方式，把NAT分为四种类型：</p>
+<ol>
+<li>Full Cone NAT: 内网主机建立一个socket(LocalIP:LocalPort) 第一次使用这个socket给外部主机发送数据时NAT会给其分配一个公网(PublicIP:PublicPort),以后用这个socket向外面任何主机发送数据都将使用这对(PublicIP:PublicPort)。此外，任何外部主机只要知道这个(PublicIP:PublicPort)就可以发送数据给(PublicIP:PublicPort)，内网的主机就能收到这个数据包。 </li>
+<li>Restricted Cone NAT: 内网主机建立一个socket(LocalIP:LocalPort) 第一次使用这个socket给外部主机发送数据时NAT会给其分配一个公网(PublicIP:PublicPort),以后用这个socket向外面任何主机发送数据都将使用这对(PublicIP:PublicPort)。此外，如果任何外部主机想要发送数据给这个内网主机，只要知道这个(PublicIP:PublicPort)并且内网主机之前用这个socket曾向这个外部主机IP发送过数据。只要满足这两个条件，这个外部主机就可以用自己的(IP,任何端口)发送数据给(PublicIP:PublicPort)，内网的主机就能收到这个数据包。</li>
+<li>Port Restricted Cone NAT: 内网主机建立一个socket(LocalIP:LocalPort) 第一次使用这个socket给外部主机发送数据时NAT会给其分配一个公网(PublicIP:PublicPort),以后用这个socket向外面任何主机发送数据都将使用这对(PublicIP:PublicPort)。此外，如果任何外部主机想要发送数据给这个内网主机，只要知道这个(PublicIP:PublicPort)并且内网主机之前用这个socket曾向这个外部主机(IP,Port)发送过数据。只要满足这两个条件，这个外部主机就可以用自己的(IP,Port)发送数据给(PublicIP:PublicPort)，内网的主机就能收到这个数据包。</li>
+<li>Symmetric NAT: 内网主机建立一个socket(LocalIP,LocalPort),当用这个socket第一次发数据给外部主机1时,NAT为其映射一个(PublicIP-1,Port-1),以后内网主机发送给外部主机1的所有数据都是用这个(PublicIP-1,Port-1)，如果内网主机同时用这个socket给外部主机2发送数据，NAT会为其分配一个(PublicIP-2,Port-2), 以后内网主机发送给外部主机2的所有数据都是用这个(PublicIP-2,Port-2).如果NAT有多于一个公网IP，则PublicIP-1和PublicIP-2可能不同，如果NAT只有一个公网IP,则Port-1和Port-2肯定不同，也就是说一定不能是PublicIP-1等于 PublicIP-2且Port-1等于Port-2。此外，如果任何外部主机想要发送数据给这个内网主机，那么它首先应该收到内网主机发给他的数据，然后才能往回发送，否则即使他知道内网主机的一个(PublicIP,Port)也不能发送数据给内网主机，这种NAT无法实现P2P通信，但是如果另一方是Full Cone NAT，还是可以实现穿透的，下面我会详细分析各种类型NAT穿透的情况。</li>
+</ol>
+<p>NAT 功能通常被集成到路由器、防火墙、ISDN路由器或者单独的NAT设备中。所以我们大家很少会知道NAT，上面NAT类型的概念描述是比较通俗的，但为了更便于理解，我再举例阐述一下NAT的原理。</p>
+<blockquote>
+<blockquote>
+<p>现有通信的双方A和B，当A和B都是在公网的时候，通信是不用NAT的。假设A在内网，内网IP是192.168.1.3，端口号是5000，A经过NAT后的IP是221.221.221.100，端口号是8000，B的IP是202.105.124.100，端口是8500。如果B要去主动连接A，即使B知道A经过NAT后的IP和端口也是无法连接成功的，因为A没有向B(202.105.124.100:8500)发送过数据，所以B的数据包会被A的NAT丢弃，于是连接失败。但是A如果去主动连接B，由于B是在公网，所以会连接成功，通信也就会建立。这也就是反弹连接木马“反弹”二字的精髓。<br>当客户端A和B都是处在内网的时候，双方由于都不知道对方的公网IP和端口，就会无从下手，所以要在客户端A和B之间架设一台服务器S来为它们牵线，而且S是处在公网，以保证A和B都能连接到S。客户端A和B登录时都首先连接S，S就会知道A和B经过NAT后的IP和端口，当A想要连接B时，就像S发出请求，S会把B经过NAT后的IP和端口告诉A，同时S向B发送A经过NAT后的IP和端口，并要求B发送数据给A，B发送数据到达A时会被A的NAT抛弃，但是B的NAT会有B发送数据到A的记录，这是A再向B发送数据时就会被B的NAT放行，因为B曾经向A的外网IP和端口发送过数据。</p>
+</blockquote>
+</blockquote>
+<p>可能有点乱，下面以故事的形式叙述一下这个情景。<br>人物：A（男） NAT_A(A家接线员)   B（女） NAT_B  （B家接线员） S<br>场景介绍：A想认识B，但是不知道B的电话，S跟A、B都是朋友，并且知道A和B的电话。接线员的职责：对往外转接的电话不做询问，对往内转接的电话则要过滤以免有骚扰电话。过滤规则：在一定时间内没有拨打过的号码就过滤。</p>
+<p>首先A给S打电话：</p>
+<pre><code>    A说：我想认识你朋友B，你把她电话给我呗。
+    S说：行，她的电话是PublicIP_B，我让她先给你打个电话，要不她家接线员不帮你转接。
+    A说：好。
+</code></pre>
+<p>S跟B打电话：</p>
+<pre><code>    S说：我有一个朋友A，人挺好的，他想认识你，你给他打个电话，他的电话号码是PublicIP_A。
+    B说：行，打完告诉你。
+    S说：好的。
+</code></pre>
+<p>B打电话到A家，B家接线员NET_B看到女主人想往PublicIP_A打电话就转接到A家了，同时把号码PublicIP_A记录下来，A家接线员NAT_A一看号码是个近期没打过的号，就给挂断了。</p>
+<p>B给S打电话：</p>
+<pre><code>     B说：我打完电话了
+     S说：好，等着吧，一会他就给你打进来了。
+</code></pre>
+<p>S给A打电话：</p>
+<pre><code>     S说：他给你打完电话了，你快点给她打。
+</code></pre>
+<p>A打电话到B家， A家接线员NET_A看到男主人想往PublicIP_B打电话就转接到B家了，B家接线员NET_B看到是刚刚拨过的PublicIP_A号码打过来的，就转接给B了，A和B的电话也就打通了。<br>A和B通话：</p>
+<pre><code>       A说：电话终于打通了，想认识你挺困难的。
+       B说：是啊。
+</code></pre>
+<p>以上虽然和实际不太一样，但穿透的整体过程基本就是这样。A往B发送数据的唯一阻碍就是NET_B，所以想要成功发送数据，必须把NET_B穿一个洞，A是无法完成这项工作的，所以就得让B完成这个打洞操作，也就是让B往A发送数据，这样NET_B就会误以为A发送的数据是上次会话的一部分从而不予阻拦。<br>但是，由于NAT的类型没有一个统一的标准，所以NAT穿透使用的技术有很多种，穿透的成功率也不一样。还有些NAT类型的内网之间几乎无法穿透。下面我们用实例详细分析一下各种NAT类型穿透的可行性。</p>
+<p>A机器在私网（192.168.0.3）</p>
+<p>A侧NAT服务器（221.221.221.100）</p>
+<p>B机器在另一个私网（192.168.0.5）</p>
+<p>B侧NAT服务器（210.30.224.70）</p>
+<p>C机器在公网（210.202.14.36）作为A和B之间的中介</p>
+<p>A机器连接C机器，假使是A（192.168.0.3:5000）-&gt; A侧NAT（转换后221.221.221.100:8000）-&gt; C（210.202.14.36:2000）</p>
+<p>B机器也连接C机器，假使是B（192.168.0.5:5000）-&gt; B侧NAT（转换后210.30.224.70:8000）-&gt; C（210.202.14.36:2000）</p>
+<p>A机器连接过C机器后，A向C报告了自己的内部地址（192.168.0.3:5000），此时C不仅知道了A的外部地址（C通过自己看到的221.221.221.100:8000）也知道了A的内部地址。同理C也知道了B的外部地址（210.30.224.70:8000）和   内部地址（192.168.0.5:5000）。之后，C作为中介，把A的两个地址告诉了B，同时也把B的两个地址告诉了A。<br>假设A先知道了B的两个地址，则A从192.168.0.3:5000处同时向B的两个地址192.168.0.5:5000和210.30.224.70:8000发包，由于A和B在两个不同的NAT后面，故从A（192.168.0.3:5000）到B（192.168.0.5:5000）的包肯定不通，现在看A（192.168.0.3:5000）到B（210.30.224.70:8000）的包，分如下两种情况：</p>
+<ol>
+<li>B侧NAT属于Full  Cone  NAT<br> 则无论A侧NAT属于Cone  NAT还是Symmetric  NAT，包都能顺利到达B。如果程序设计得好，使得B主动到A的包也能借用A主动发起建立的通道的话，则即使A侧NAT属于Symmetric  NAT，B发出的包也能顺利到达A。 </li>
+</ol>
+<blockquote>
+<blockquote>
+<pre><code> 结论1：只要单侧NAT属于Full  Cone  NAT，即可实现双向通信。    
+</code></pre>
+</blockquote>
+</blockquote>
+<ol start="2">
+<li>B侧NAT属于Restricted  Cone或Port  Restricted  Cone<br>则包不能到达B。再细分两种情况     </li>
+</ol>
+<p><strong>(1) A侧NAT属于Restricted  Cone或Port  Restricted  Cone</strong><br>    虽然先前那个初始包不曾到达B，但该发包过程已经在A侧NAT上留下了足够的记录：A（192.168.0.3:5000）-&gt;（221.221.221.100:8000）-&gt;B（210.30.224.70:8000）。如果在这个记录没有超时之前，B也重复和A一样的动作，即向A（221.221.221.100:8000）发包，虽然A侧NAT属于Restricted   Cone或Port Restricted Cone，但先前A侧NAT已经认为A已向B（210.30.224.70:8000）发过包，故B向A（221.221.221.100:8000）发包能够顺利到达A。同理，此后A到B的包，也能顺利到达。     </p>
+<blockquote>
+<blockquote>
+<pre><code> 结论2：只要两侧NAT都不属于Symmetric  NAT，也可双向通信。换种说法，只要两侧NAT都属于Cone  NAT，即可双向通信。     
+</code></pre>
+</blockquote>
+</blockquote>
+<p><strong>(2) A侧NAT属于Symmetric  NAT</strong><br>    因为A侧NAT属于Symmetric  NAT，且最初A到C发包的过程在A侧NAT留下了如下记录：A（192.168.0.3:5000）-&gt;（221.221.221.100:8000）-&gt; C（210.202.14.36:2000），故A到B发包过程在A侧NAT上留下的记录为：<br>    A（192.168.0.3:5000）-&gt;（221.221.221.100:8001）-&gt;B（210.30.224.70:8000）（注意，转换后端口产生了变化）。而B向A的发包，只能根据C给他的关于A的信息，发往A（221.221.221.100:8000），因为A端口受限，故此路不通。再来看B侧NAT，由于B也向A发过了包，且B侧NAT属于Restricted   Cone或Port   Restricted  Cone，故在B侧NAT上留下的记录为：B（192.168.0.5:5000）-&gt;（210.30.224.70:8000）-&gt;A（221.221.221.100:8000），此后，如果A还继续向B发包的话（因为同一目标，故仍然使用前面的映射），如果B侧NAT属于Restricted   Cone，则从A（221.221.221.100:8001）来的包能够顺利到达B；如果B侧NAT属于Port  Restricted  Cone，则包永远无法到达B。     </p>
+<blockquote>
+<blockquote>
+<pre><code> 结论3：一侧NAT属于Symmetric  NAT，另一侧NAT属于Restricted   Cone，也可双向通信。     
+</code></pre>
+</blockquote>
+</blockquote>
+<pre><code>反过来想，则可以得出另一个结论：
+</code></pre>
+<blockquote>
+<blockquote>
+<pre><code> 结论4：两个都是Symmetric NAT或者一个是Symmetric  NAT、另一个是Port Restricted Cone，则不能双向通信，因为NAT无法穿透。     
+</code></pre>
+</blockquote>
+</blockquote>
+<p>上面的例子虽然只是分析了最初发包是从A到B的情况，但是，由于两者的对称性，前面得出的几条结论没有方向性，双向都适用。      </p>
+<p>我们上面得出了四条结论，natcheck网站则把他归结为一条：<strong>只要两侧NAT都属于Cone  NAT（含Full  Cone、Restricted  Cone和Port  Restricted  Cone三者），即可双向通信。</strong>没有把我们的结论3包括进去。<br>一般情况下，只有比较注重安全的大公司会使用Symmetric NAT，禁止使用P2P类型的通信，很多地方使用的都是Cone  NAT，因此穿透技术还是有发展前景的。</p>
+<h2 id="使用UDP、TCP穿透NAT"><a href="#使用UDP、TCP穿透NAT" class="headerlink" title="使用UDP、TCP穿透NAT"></a>使用UDP、TCP穿透NAT</h2><p>上面讲的情况可以直接应用于UDP穿透技术中，使用TCP 协议穿透NAT 的方式和使用UDP 协议穿透NAT 的方式几乎一样，没有什么本质上的区别，只是将无连接的UDP 变成了面向连接的TCP 。值得注意是：</p>
+<p>B在向A打洞时，发送的SYN 数据包，而且同样会被NAT_A 丢弃。同时，B需要在原来的socket 上监听，由于重用socket ，所以需要将socket 属性设置为SO_REUSEADDR。<br>A向B发送连接请求。同样，由于B到A方向的孔已经打好，所以连接会成功，经过3 次握手后，A到B之间的连接就建立起来了。具体过程如下：</p>
+<ol>
+<li>S启动两个网络侦听，一个叫【主连接】侦听，一个叫【协助打洞】的侦听。</li>
+<li> A和B分别与S的【主连接】保持联系。</li>
+<li> 当A需要和B建立直接的TCP连接时，首先连接S的【协助打洞】端口，并发送协助连接申请。同时在该端口号上启动侦听。注意由于要在相同的网络终端上绑定到不同的套接字上，所以必须为这些套接字设置 SO_REUSEADDR 属性（即允许重用），否则侦听会失败。</li>
+<li>S的【协助打洞】连接收到A的申请后通过【主连接】通知B，并将A经过NAT-A转换后的公网IP地址和端口等信息告诉B。</li>
+<li>B收到S的连接通知后首先与S的【协助打洞】端口连接，随便发送一些数据后立即断开，这样做的目的是让S能知道B经过NAT-B转换后的公网IP和端口号。</li>
+<li>B尝试与A的经过NAT-A转换后的公网IP地址和端口进行connect，大多数路由器对于不请自到的SYN请求包直接丢弃而导致connect失败，但NAT-B会纪录此次连接的源地址和端口号，为接下来真正的连 接做好了准备，这就是所谓的打洞，即B向A打了一个洞，下次A就能直接连接到B刚才使用的端口号了。</li>
+<li>客户端B打洞的同时在相同的端口上启动侦听。B在一切准备就绪以后通过与S的【主连接】回复消息“我已经准备好”，S在收到以后将B经过NAT-B转换后的公网IP和端口号告诉给A。</li>
+<li>A收到S回复的B的公网IP和端口号等信息以后，开始连接到B公网IP和端口号，由于在步骤6中B曾经尝试连接过A的公网IP地址和端口，NAT-B纪录了此次连接的信息，所以当A主动连接B时，NAT-B会认为是合法的SYN数据，并允许通过，从而直接的TCP连接建立起来了。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RakNet/" rel="tag"># RakNet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/" rel="prev" title="优雅的智慧——听《硅谷来信》节目有感">
+                  <i class="fa fa-angle-left"></i> 优雅的智慧——听《硅谷来信》节目有感
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/" rel="next" title="论程序员与最优解">
+                  论程序员与最优解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

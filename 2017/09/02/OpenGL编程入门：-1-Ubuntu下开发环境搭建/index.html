@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="计算机图形学与OpenGL计算机图形学主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年虚拟现实(VR)和增强现实(AR)的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。 在图形学编程中，计算机图形学是基础，其背后的数学原理指导我们如何将三维物体空间投射到二维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL编程入门： 1.Ubuntu下开发环境搭建">
+<meta property="og:url" content="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="计算机图形学与OpenGL计算机图形学主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年虚拟现实(VR)和增强现实(AR)的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。 在图形学编程中，计算机图形学是基础，其背后的数学原理指导我们如何将三维物体空间投射到二维">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-02T09:05:02.000Z">
+<meta property="article:modified_time" content="2017-09-02T09:05:02.000Z">
+<meta property="article:author" content="Alex Peng">
+<meta property="article:tag" content="计算机图形学">
+<meta property="article:tag" content="OpenGL编程入门">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/","path":"2017/09/02/OpenGL编程入门：-1-Ubuntu下开发环境搭建/","title":"OpenGL编程入门： 1.Ubuntu下开发环境搭建"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OpenGL编程入门： 1.Ubuntu下开发环境搭建 | Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E4%B8%8EOpenGL"><span class="nav-number">1.</span> <span class="nav-text">计算机图形学与OpenGL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ebeginners%E8%8B%A6%E8%8B%A6%E6%90%9C%E5%AF%BB%E7%9A%84%E2%80%99OpenGL-SDK%E2%80%99%E7%9A%84%E4%B8%80%E7%82%B9%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">关于beginners苦苦搜寻的’OpenGL SDK’的一点说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenGL%E5%BC%80%E5%8F%91%E4%B8%89%E4%BB%B6%E5%A5%97%EF%BC%9A-GLEW%EF%BC%8CGLFW%EF%BC%8CGLM"><span class="nav-number">3.</span> <span class="nav-text">OpenGL开发三件套： GLEW，GLFW，GLM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E9%93%BE%E5%92%8CIDE%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text">构建工具链和IDE的选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.</span> <span class="nav-text">一个简单的示例程序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OpenGL编程入门： 1.Ubuntu下开发环境搭建 | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenGL编程入门： 1.Ubuntu下开发环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-09-02 17:05:02" itemprop="dateCreated datePublished" datetime="2017-09-02T17:05:02+08:00">2017-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机图形学</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="计算机图形学与OpenGL"><a href="#计算机图形学与OpenGL" class="headerlink" title="计算机图形学与OpenGL"></a>计算机图形学与OpenGL</h1><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/279486?fr=aladdin">计算机图形学</a>主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E/207123?fr=aladdin">虚拟现实(VR)</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E/1889025">增强现实(AR)</a>的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。</p>
+<p>在图形学编程中，计算机图形学是基础，其背后的数学原理指导我们如何将三维物体空间投射到二维屏幕空间并展现出真实的空间感。有了理论基础，我们就需要某种方法，将这种理论转化为切实的计算机程序，将画面加以呈现。这个过程中，程序员需要某种方式，可以和计算机的图形显卡进行通信，将显示数据送入显存，并告知显卡这些数据的含义，最终由显卡进行渲染，最终呈现出画面。</p>
+<span id="more"></span>
+
+<p>OpenGL正是基于这种目的所创建。它提供了一组标准的接口，用于沟通显卡，使得我们可以传送数据到显存并指定传入数据的格式。高版本OpenGL提供的可编程管线赋予了程序员对渲染流程的控制能力，以便绘制更复杂的画面和提供对渲染过程的更强的控制能力。</p>
+<p>OpenGL被认为是一种底层图形API编程接口，它支持所有的主流操作系统平台。它的一个简化版本OpenGL ES被广泛应用于Android系统中，是移动互联网时代图形处理的核心解决方案，<br>当然，相较于竞争对手DirectX，OpenGL也许在易用性，效率等方面受到很多诟病，但它依然是我们接触和学习计算机图形学最好的切入点。</p>
+<h1 id="关于beginners苦苦搜寻的’OpenGL-SDK’的一点说明"><a href="#关于beginners苦苦搜寻的’OpenGL-SDK’的一点说明" class="headerlink" title="关于beginners苦苦搜寻的’OpenGL SDK’的一点说明"></a>关于beginners苦苦搜寻的’OpenGL SDK’的一点说明</h1><p>程序员对于SDK的概念都是耳熟能详的。隔壁DirectX就有微软爸爸提供的SDK啊，下载安装，按照guide开始搞就好了。所以对于OpenGL，很多新手的第一反应是：<strong>去哪下SDK</strong>？</p>
+<p>这里有一个’<strong>非常不幸</strong>‘的消息告诉大家： OpenGL没有SDK，官方不提供任何的二进制开发包。</p>
+<p>至于这个问题的原因，在于OpenGL是一个底层图形库，它的<em>底层</em>体现在它提供对显卡的操作性。OpenGL的功能是独立于操作系统之外的，它的图形功能本身依赖于显卡而不是操作系统。这一点上，OpenGL和我们熟知的图形UI库，比如MFC，QT，又或者Java Swing ，C#等有本质的不同。</p>
+<p>OpenGL可以说是一套标准，这套标准描述了OpenGL所提供的API接口集合，而对它的具体实现，则由显卡厂商来完成。也就是说，你找不到所谓的“OpenGL支持库”，也不存在SDK。它的功能直接实现在Nvidia或者ATI显卡驱动中。显卡厂商会在自家的显卡上实现OpenGL的某个特定版本并以官方驱动的形式提供给用户下载。对于普通用户来说，只需要安装新版的显卡驱动即可，无需安装其他任何东西。这也是为什么游戏玩家经常需要安装DirectX9C什么的，却很少见到有“安装OpenGL”这个说法，对于OpenGL游戏黑屏之类的问题，你要做的是升级显卡驱动。</p>
+<h1 id="OpenGL开发三件套：-GLEW，GLFW，GLM"><a href="#OpenGL开发三件套：-GLEW，GLFW，GLM" class="headerlink" title="OpenGL开发三件套： GLEW，GLFW，GLM"></a>OpenGL开发三件套： GLEW，GLFW，GLM</h1><p>OpenGL的开发环境其实配置起来是要花点精力的。问题就在于，如何获取OpenGL的编程接口。因为我们有的，只是驱动厂商提供的二进制驱动程序，并没有任何的依赖库，或者头文件。那么开发工作怎么开始呢？</p>
+<p>常规的做法是，从厂商的显卡驱动程序中手动获取OpenGL的导出函数地址。这是一个很繁琐的工作，我们需要手动获取到常用的OpenGL函数的函数地址，并声明为正确的函数指针格式。对于不同的显卡设备和显卡驱动版本，所支持的OpenGL版本各不相同，有些API可能在旧版本驱动中并未提供。另外一个导致这个问题复杂化的原因是OpenGL扩展。不同的厂商可能针对标准OpenGL有自己的扩展函数提供。这些函数并不包含在标准的OpenGL中，通常用来提供一些显卡相关的高级特性或者用来针对特定显卡提供效率优化。对于这部分扩展函数的处理是非常重复，繁琐和复杂的劳动。</p>
+<p>所以我们有了<a target="_blank" rel="noopener" href="http://glew.sourceforge.net/">GLEW</a>库，全称是“The OpenGL Extension Wrangler Library”,专门用来处理OpenGL扩展。我们只需要调用一个glewInit函数，便可以自动获取当前显卡所支持的所有扩展。</p>
+<p>对比DirectX，其实OpenGL提供的功能要简单的多，它只提供了对图形的处理功能，并没有提供和窗口创建，鼠标键盘输入处理等相关的功能。所以我们需要一个跨平台的窗口类库实现以配合OpenGL实现跨平台图形程序的编写。<a target="_blank" rel="noopener" href="http://www.glfw.org/">GLFW</a>正是这样一个类库，它为OpenGL/OpenGL ES/Vulkan提供了跨平台的统一接口，用以实现基本窗口创建和输入处理。</p>
+<p>在开发过程中，我们会涉及一些矩阵转换，投影，缩放等数学内容，所以我们需要一个数学库来简化这些操作。<a target="_blank" rel="noopener" href="https://github.com/g-truc/glm">GLM</a>可以用来解决这问题,它提供了一个和GLSL相似的语法用来处理OpenGL中常见的数学运算。</p>
+<p>在ubuntu系统中，我们可以使用如下命令安装这三个依赖库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y libglew-dev libglfw3-dev libglm-dev</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="构建工具链和IDE的选择"><a href="#构建工具链和IDE的选择" class="headerlink" title="构建工具链和IDE的选择"></a>构建工具链和IDE的选择</h1><p>对于Linux系统上的**现代C++**项目来说，CMake永远是构建工具最有力的竞争者之一。关于CMake的具体语法和它解决了什么问题，各位看官感兴趣的可以去百度。但是CMake确实很优秀，语法简洁明了，跨平台，支持不同的编译器。<br>对于IDE的选择，qt creator和CLion都不错。它们都支持cmake工程，提供完善的语法提示和IDE调试功能。</p>
+<p>个人更倾向于CLion，毕竟是付费产品，它提供的功能更完备：语法补全，错误提示，头文件自动引入等等，带给你的是一个足够爽快的编程体验。当然，作为idea系列的产品，它依赖于java，而且相对资源占用较多。在我的系统上，它还有一很影响使用体验的小bug：导航快捷键不管用。每次都要去菜单上点真的很烦。除此之外，一切都很完美。</p>
+<h1 id="一个简单的示例程序"><a href="#一个简单的示例程序" class="headerlink" title="一个简单的示例程序"></a>一个简单的示例程序</h1><p>下面是一个简单的例子程序，用来显示一个彩色立方体。</p>
+<figure class="highlight cpp"><figcaption><span>main.cpp</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GL/glew.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;GLFW/glfw3.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;glShader.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;glShader.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;glTexture.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glm/glm.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;glm/gtc/matrix_transform.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// the struct to hold all values we have used.</span></span><br><span class="line"><span class="comment">// just use glfwSetWindowUserPointer to bind it to the GLFWwindow pointer.</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">window_info</span>&#123;</span><br><span class="line">    <span class="type">int</span> width;</span><br><span class="line">    <span class="type">int</span> height;</span><br><span class="line">    std::string title;</span><br><span class="line">    GLuint vertexArrayId;</span><br><span class="line">    GLuint vertexbuffer;            <span class="comment">//identify for vertex buffer</span></span><br><span class="line">    GLuint uvbuffer;                <span class="comment">//identify for uv buffer</span></span><br><span class="line">    GLuint programId;               <span class="comment">//the shader program identify we used</span></span><br><span class="line">    GLint matrixId;                 <span class="comment">//matrix location</span></span><br><span class="line">    glm::mat4 mvpMatrix;            <span class="comment">//Model-View-Projection matrix that we need translate to shader</span></span><br><span class="line">    GLuint texture;                 <span class="comment">//texture we have loaded, Sampler2D</span></span><br><span class="line">    GLuint textureId;               <span class="comment">//texture location</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">initFunc</span><span class="params">(GLFWwindow *window)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    window_info *info = <span class="built_in">static_cast</span>&lt;window_info*&gt;(<span class="built_in">glfwGetWindowUserPointer</span>(window));</span><br><span class="line">    <span class="keyword">if</span>(!info)&#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;initFunc: get info failed !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.</span></span><br><span class="line">    <span class="comment">// A cube has 6 faces with 2 triangles each, so this makes 6*2=12 triangles, and 12*3 vertices</span></span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> GLfloat g_vertex_buffer_data[] = &#123;</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>,<span class="number">-1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">-1.0f</span>, <span class="number">1.0f</span>, <span class="number">1.0f</span>,</span><br><span class="line">            <span class="number">1.0f</span>,<span class="number">-1.0f</span>, <span class="number">1.0f</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Two UV coordinatesfor each vertex. They were created with Blender.</span></span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> GLfloat g_uv_buffer_data[] = &#123;</span><br><span class="line">            <span class="number">0.000059f</span>, <span class="number">1.0f</span><span class="number">-0.000004f</span>,</span><br><span class="line">            <span class="number">0.000103f</span>, <span class="number">1.0f</span><span class="number">-0.336048f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">1.000023f</span>, <span class="number">1.0f</span><span class="number">-0.000013f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.999958f</span>, <span class="number">1.0f</span><span class="number">-0.336064f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.336024f</span>, <span class="number">1.0f</span><span class="number">-0.671877f</span>,</span><br><span class="line">            <span class="number">0.667969f</span>, <span class="number">1.0f</span><span class="number">-0.671889f</span>,</span><br><span class="line">            <span class="number">1.000023f</span>, <span class="number">1.0f</span><span class="number">-0.000013f</span>,</span><br><span class="line">            <span class="number">0.668104f</span>, <span class="number">1.0f</span><span class="number">-0.000013f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.000059f</span>, <span class="number">1.0f</span><span class="number">-0.000004f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">0.336098f</span>, <span class="number">1.0f</span><span class="number">-0.000071f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">0.336024f</span>, <span class="number">1.0f</span><span class="number">-0.671877f</span>,</span><br><span class="line">            <span class="number">1.000004f</span>, <span class="number">1.0f</span><span class="number">-0.671847f</span>,</span><br><span class="line">            <span class="number">0.999958f</span>, <span class="number">1.0f</span><span class="number">-0.336064f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.668104f</span>, <span class="number">1.0f</span><span class="number">-0.000013f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">0.668104f</span>, <span class="number">1.0f</span><span class="number">-0.000013f</span>,</span><br><span class="line">            <span class="number">0.336098f</span>, <span class="number">1.0f</span><span class="number">-0.000071f</span>,</span><br><span class="line">            <span class="number">0.000103f</span>, <span class="number">1.0f</span><span class="number">-0.336048f</span>,</span><br><span class="line">            <span class="number">0.000004f</span>, <span class="number">1.0f</span><span class="number">-0.671870f</span>,</span><br><span class="line">            <span class="number">0.336024f</span>, <span class="number">1.0f</span><span class="number">-0.671877f</span>,</span><br><span class="line">            <span class="number">0.000103f</span>, <span class="number">1.0f</span><span class="number">-0.336048f</span>,</span><br><span class="line">            <span class="number">0.336024f</span>, <span class="number">1.0f</span><span class="number">-0.671877f</span>,</span><br><span class="line">            <span class="number">0.335973f</span>, <span class="number">1.0f</span><span class="number">-0.335903f</span>,</span><br><span class="line">            <span class="number">0.667969f</span>, <span class="number">1.0f</span><span class="number">-0.671889f</span>,</span><br><span class="line">            <span class="number">1.000004f</span>, <span class="number">1.0f</span><span class="number">-0.671847f</span>,</span><br><span class="line">            <span class="number">0.667979f</span>, <span class="number">1.0f</span><span class="number">-0.335851f</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//load dds texture</span></span><br><span class="line">    info-&gt;texture = <span class="built_in">loadDDS</span>(<span class="string">&quot;../resources/textures/uvtemplate.DDS&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;texture: &quot;</span> &lt;&lt; info-&gt;texture &lt;&lt; std::endl;</span><br><span class="line">    info-&gt;textureId = <span class="built_in">glGetUniformLocation</span>(info-&gt;programId,<span class="string">&quot;myTextureSampler&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;textureId: &quot;</span> &lt;&lt; info-&gt;textureId &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">glGenVertexArrays</span>(<span class="number">1</span>,&amp;info-&gt;vertexArrayId);</span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(info-&gt;vertexArrayId);</span><br><span class="line">    <span class="comment">//gen buffer</span></span><br><span class="line">    <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;info-&gt;vertexbuffer); <span class="comment">//gen 1 buffer,saved in vertexbuffer</span></span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, info-&gt;vertexbuffer);    <span class="comment">//bind the generated buffer, otherwise the following operation will take effect on it.</span></span><br><span class="line">    <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);</span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(</span><br><span class="line">            <span class="number">0</span>,<span class="comment">//same as the bind location</span></span><br><span class="line">            <span class="number">3</span>,<span class="comment">//size of the array element, just 3 float makes a point.</span></span><br><span class="line">            GL_FLOAT,<span class="comment">//we use float for point</span></span><br><span class="line">            GL_FALSE,<span class="comment">//not normalize</span></span><br><span class="line">            <span class="number">0</span>,<span class="comment">//stride</span></span><br><span class="line">            (<span class="type">void</span>*)<span class="number">0</span><span class="comment">//array buffer offset.</span></span><br><span class="line">    );</span><br><span class="line">    <span class="built_in">glGenBuffers</span>(<span class="number">1</span>, &amp;info-&gt;uvbuffer);</span><br><span class="line">    <span class="built_in">glEnableVertexAttribArray</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">glBindBuffer</span>(GL_ARRAY_BUFFER, info-&gt;uvbuffer);</span><br><span class="line">    <span class="built_in">glBufferData</span>(GL_ARRAY_BUFFER, <span class="built_in">sizeof</span>(g_uv_buffer_data), g_uv_buffer_data, GL_STATIC_DRAW);</span><br><span class="line">    <span class="built_in">glVertexAttribPointer</span>(</span><br><span class="line">            <span class="number">1</span>,</span><br><span class="line">            <span class="number">2</span>,</span><br><span class="line">            GL_FLOAT,</span><br><span class="line">            GL_FALSE,</span><br><span class="line">            <span class="number">0</span>,</span><br><span class="line">            (<span class="type">void</span>*)<span class="number">0</span></span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br><span class="line">    info-&gt;programId = Misc::<span class="built_in">loadShader</span>(<span class="string">&quot;../resources/shaders/TexturedClubVertex.glsl&quot;</span>,<span class="string">&quot;../resources/shaders/TexturedClubFrag.glsl&quot;</span>);</span><br><span class="line">    <span class="built_in">glEnable</span>(GL_DEPTH_TEST);</span><br><span class="line">    <span class="built_in">glDepthFunc</span>(GL_LESS);</span><br><span class="line">    <span class="built_in">glUseProgram</span>(info-&gt;programId);</span><br><span class="line">    <span class="comment">//let&#x27;s create the MVP matrix!</span></span><br><span class="line">    glm::mat4 projectionMartrix = glm::<span class="built_in">perspective</span>(glm::<span class="built_in">radians</span>(<span class="number">45.0f</span>),(<span class="type">float</span>)info-&gt;width / (<span class="type">float</span>)info-&gt;height,<span class="number">0.1f</span>, <span class="number">100.0f</span>);</span><br><span class="line"><span class="comment">//    glm::mat4 projectionMartrix = glm::ortho(-10.0f,10.0f,-10.0f,10.0f,0.0f,100.0f); // In world coordinates</span></span><br><span class="line">    glm::mat4 viewMatrix = glm::<span class="built_in">lookAt</span>(</span><br><span class="line">            glm::<span class="built_in">vec3</span>(<span class="number">4</span>,<span class="number">3</span>,<span class="number">3</span>),</span><br><span class="line">            glm::<span class="built_in">vec3</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),</span><br><span class="line">            glm::<span class="built_in">vec3</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>)</span><br><span class="line">    );</span><br><span class="line">    glm::mat4 modelMatrix = glm::<span class="built_in">mat4</span>( <span class="number">1.0f</span>);</span><br><span class="line">    <span class="comment">//wtf? clion give the wrong warning...</span></span><br><span class="line">    info-&gt;mvpMatrix = projectionMartrix * viewMatrix * modelMatrix;</span><br><span class="line">    info-&gt;matrixId = <span class="built_in">glGetUniformLocation</span>(info-&gt;programId, <span class="string">&quot;MVP&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;initFunc success !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">drawFunc</span><span class="params">(GLFWwindow *window)</span></span>&#123;</span><br><span class="line">    window_info* info = <span class="built_in">static_cast</span>&lt;window_info*&gt;(<span class="built_in">glfwGetWindowUserPointer</span>(window));</span><br><span class="line">    <span class="keyword">if</span>(!info)&#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;drawFunc: get info failed !&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glfwGetWindowSize</span>(window, &amp;info-&gt;width, &amp;info-&gt;height);</span><br><span class="line">    <span class="built_in">glViewport</span>(<span class="number">0</span>,<span class="number">0</span>,info-&gt;width,info-&gt;height);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">glUseProgram</span>(info-&gt;programId);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glUniformMatrix4fv</span>(info-&gt;matrixId, <span class="number">1</span>, GL_FALSE, &amp;info-&gt;mvpMatrix[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//I don&#x27;t understand it now.</span></span><br><span class="line">    <span class="comment">//how to relate texture and it&#x27;s location?</span></span><br><span class="line">    <span class="built_in">glActiveTexture</span>(GL_TEXTURE0);</span><br><span class="line">    <span class="built_in">glBindTexture</span>(GL_TEXTURE_2D, info-&gt;texture);</span><br><span class="line">    <span class="built_in">glUniform1i</span>(info-&gt;textureId, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glUniformMatrix4fv</span>(info-&gt;matrixId, <span class="number">1</span>, GL_FALSE, &amp;info-&gt;mvpMatrix[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(info-&gt;vertexArrayId);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glDrawArrays</span>(GL_TRIANGLES,<span class="number">0</span>, <span class="number">12</span> * <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glBindVertexArray</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">glUseProgram</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cleanFunc</span><span class="params">(GLFWwindow *window)</span></span>&#123;</span><br><span class="line">    window_info *info = <span class="built_in">static_cast</span>&lt;window_info*&gt;(<span class="built_in">glfwGetWindowUserPointer</span>(window));</span><br><span class="line">    <span class="keyword">if</span>(!info)&#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;cleanFun: get info failed !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">glDisableVertexAttribArray</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">glDisableVertexAttribArray</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">glDeleteBuffers</span>(<span class="number">1</span>,&amp;info-&gt;vertexbuffer);</span><br><span class="line">    <span class="built_in">glDeleteBuffers</span>(<span class="number">1</span>, &amp;info-&gt;uvbuffer);</span><br><span class="line">    <span class="built_in">glDeleteVertexArrays</span>(<span class="number">1</span>,&amp;info-&gt;vertexArrayId);</span><br><span class="line">    <span class="built_in">glDeleteProgram</span>(info-&gt;programId);</span><br><span class="line">    <span class="built_in">glDeleteTextures</span>(<span class="number">1</span>, &amp;info-&gt;texture);</span><br><span class="line">    <span class="comment">//delete info</span></span><br><span class="line">    <span class="built_in">glfwSetWindowUserPointer</span>(window, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">delete</span> info;</span><br><span class="line">    <span class="comment">//destory window</span></span><br><span class="line">    <span class="built_in">glfwMakeContextCurrent</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="built_in">glfwDestroyWindow</span>(window);</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;cleanFunc success !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span>** argv)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glfwSetErrorCallback</span>([](<span class="type">int</span> errorCode, <span class="type">const</span> <span class="type">char</span>* errorMsg)&#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;[&quot;</span> &lt;&lt; errorCode &lt;&lt; <span class="string">&quot;] &quot;</span> &lt;&lt; errorMsg &lt;&lt;  std::endl;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span>(!<span class="built_in">glfwInit</span>())&#123;</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;glfwInit failed !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_SAMPLES, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);</span><br><span class="line">    <span class="built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span><br><span class="line"></span><br><span class="line">    window_info *info = <span class="keyword">new</span> window_info;</span><br><span class="line">    info-&gt;width = <span class="number">800</span>;</span><br><span class="line">    info-&gt;height = <span class="number">600</span>;</span><br><span class="line">    info-&gt;title = <span class="string">&quot;ogl-toturial-texture-clube&quot;</span>;</span><br><span class="line">    GLFWwindow *window = <span class="built_in">glfwCreateWindow</span>(info-&gt;width,info-&gt;height,info-&gt;title.<span class="built_in">c_str</span>(),<span class="literal">nullptr</span>, <span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">if</span>(!window)&#123;</span><br><span class="line">        <span class="keyword">delete</span> info;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;glfwCreateWindow failed !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="built_in">glfwTerminate</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">glfwSetWindowUserPointer</span>(window,info);</span><br><span class="line">    <span class="built_in">glfwMakeContextCurrent</span>(window);</span><br><span class="line">    glewExperimental = GL_TRUE;</span><br><span class="line">    <span class="keyword">if</span>(GLEW_OK != <span class="built_in">glewInit</span>())&#123;</span><br><span class="line">        <span class="built_in">glfwTerminate</span>();</span><br><span class="line">        std::cerr &lt;&lt; <span class="string">&quot;glewInit failed !&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//初始化</span></span><br><span class="line">    <span class="built_in">initFunc</span>(window);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">glfwWindowShouldClose</span>(window))&#123;</span><br><span class="line">        <span class="built_in">glfwPollEvents</span>();</span><br><span class="line">        <span class="built_in">glClear</span>(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line">        <span class="comment">//绘制</span></span><br><span class="line">        <span class="built_in">drawFunc</span>(window);</span><br><span class="line">        <span class="comment">//swap buffer</span></span><br><span class="line">        <span class="built_in">glfwSwapBuffers</span>(window);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//清理</span></span><br><span class="line">    <span class="built_in">cleanFunc</span>(window);</span><br><span class="line">    <span class="built_in">glfwTerminate</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight glsl"><figcaption><span>TexturedClubVertex.glsl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">layout</span>(<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> vertexPosition_modelspace;</span><br><span class="line"><span class="keyword">layout</span>(<span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec2</span> vertexUV;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec2</span> UV;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">mat4</span> MVP;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()&#123;</span><br><span class="line">  <span class="built_in">gl_Position</span> = MVP * <span class="type">vec4</span>(vertexPosition_modelspace, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  UV = vertexUV;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight glsl"><figcaption><span>TexturedClubFrag.glsl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec2</span> UV;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec3</span> color;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> myTextureSampler;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//Output color = color of the texture at the specific UV</span></span><br><span class="line">  color = <span class="built_in">texture</span>(myTextureSampler, UV).rgb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" rel="tag"># 计算机图形学</a>
+              <a href="/tags/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/" rel="tag"># OpenGL编程入门</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" rel="prev" title="跳转，执行，返回：从汇编看函数调用">
+                  <i class="fa fa-angle-left"></i> 跳转，执行，返回：从汇编看函数调用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/" rel="next" title="优雅的智慧——听《硅谷来信》节目有感">
+                  优雅的智慧——听《硅谷来信》节目有感 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Alex的技术博客</title>
+  <icon>http://pengyz.com/icon.png</icon>
+  <subtitle>不忘初心，方得始终</subtitle>
+  <link href="http://pengyz.com/atom.xml" rel="self"/>
+  
+  <link href="http://pengyz.com/"/>
+  <updated>2024-07-08T15:49:13.270Z</updated>
+  <id>http://pengyz.com/</id>
+  
+  <author>
+    <name>Alex Peng</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>draft</title>
+    <link href="http://pengyz.com/2024/07/08/draft/"/>
+    <id>http://pengyz.com/2024/07/08/draft/</id>
+    <published>2024-07-08T15:49:13.000Z</published>
+    <updated>2024-07-08T15:49:13.270Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>前人的智慧结晶——有感于软件设计模式</title>
+    <link href="http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
+    <published>2022-03-13T13:49:45.000Z</published>
+    <updated>2022-03-13T13:49:45.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;软件开发面临的问题&quot;&gt;&lt;a href=&quot;#软件开发面临的问题&quot; class=&quot;headerlink&quot; title=&quot;软件开发面临的问题&quot;&gt;&lt;/a&gt;软件开发面临的问题&lt;/h1&gt;&lt;p&gt;对于程序员来说，使用程序解决现实生活中的各种实际问题是我们的主要任务。&lt;/p&gt;
+&lt;p&gt;在软件行业发展的早期，受限于硬件性能和计算机的普及程度，程序的规模都很小，解决的也都是一些相对简单的问题。在这个时期，结构化的程序设计被认为是软件开发的最佳实践。我们用一个个函数和变量来组织程序，以函数组织功能，以函数间的相互调用来组织起更复杂的逻辑，解决更实际的问题。&lt;/p&gt;
+&lt;p&gt;但是随着IT行业的发展，在摩尔定律之下，硬件性能已经有了飞跃式的提升，软件所关注问题的复杂度也在成倍提升。但是这里存在一个矛盾点：机器可以处理的问题复杂度是远超人脑的，随着硬件性能的提升，这个差距还会进一步放大。这种急速膨胀的软件复杂度给程序员造成了沉重的脑力负担。所以IT圈发明了高层抽象，各种应用开发框架，编程范式，编程思想，用以缓解这种越发尖锐的问题。&lt;/p&gt;
+&lt;p&gt;设计模式也是其中的一种重要的解决方案，在经典著作《设计模式 可复用面向对象软件的基础》一书中，Gof对前人的智慧进行了总结，提出了23种被广泛使用的设计模式并对它们进行了深入探讨。&lt;/p&gt;
+&lt;p&gt;本文中我们并不对设计模式本身进行探讨，感兴趣的同学可以去通读设计模式全书，相信会大有裨益。我们在本文中所要讲述的是我自己对对设计模式的几点思考。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="阳光" scheme="http://pengyz.com/tags/%E9%98%B3%E5%85%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编程随想录</title>
+    <link href="http://pengyz.com/2022/03/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
+    <id>http://pengyz.com/2022/03/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/</id>
+    <published>2022-03-11T10:20:03.000Z</published>
+    <updated>2022-03-13T10:20:03.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;关于本系列&quot;&gt;&lt;a href=&quot;#关于本系列&quot; class=&quot;headerlink&quot; title=&quot;关于本系列&quot;&gt;&lt;/a&gt;关于本系列&lt;/h1&gt;&lt;p&gt;时间总是过得比我们预想中的快，从2012年开始实习算起，我作为程序员的职业生涯也走到了第十个年头。&lt;br&gt;十年总是一个值得我们停下来思考和总结的时间节点。这其中发生了很多的事情，我的生活也与十年前有了天翻地覆的不同。所以我想留下点属于我自己的，关于编程的思考。&lt;/p&gt;
+&lt;p&gt;在计划中，这会是一个系列，主要聊编程相关的事情，留下自己对程序员的职业思考。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="编程随想录" scheme="http://pengyz.com/tags/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>quickjs调试机制实现解析</title>
+    <link href="http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/"/>
+    <id>http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/</id>
+    <published>2021-09-17T12:43:21.000Z</published>
+    <updated>2021-09-17T12:43:21.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;对调试器的最初印象&quot;&gt;&lt;a href=&quot;#对调试器的最初印象&quot; class=&quot;headerlink&quot; title=&quot;对调试器的最初印象&quot;&gt;&lt;/a&gt;对调试器的最初印象&lt;/h1&gt;&lt;p&gt;每个刚入行的程序员都有过对调试器一知半解的时候，那时我们使用 &lt;strong&gt;printf&lt;/strong&gt;，&lt;strong&gt;console.log&lt;/strong&gt;, &lt;strong&gt;System.out.println&lt;/strong&gt; 等进行错误定位，统称&lt;strong&gt;打印输出调试法&lt;/strong&gt;，这个方法至今在服务器后端等无法停机更无法挂调试器的地方大行其道，我们叫它&lt;strong&gt;log日志&lt;/strong&gt;。&lt;br&gt;当我们工作了一段时间之后，逐渐发现了编程世界的复杂性，有些问题无法通过简单的打印来定位：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;程序内某个变量的值被改掉了，我想知道是哪里改的&lt;/li&gt;
+&lt;li&gt;两个相同的组件，一个表现正常一个不正常，why?&lt;/li&gt;
+&lt;li&gt;程序存在死锁或其他多线程静态条件，怎么定位和修复？&lt;/li&gt;
+&lt;li&gt;我的程序内存泄露了，怎么办&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上面列举的一些情况有些可以借助debugger，有些如内存泄露，还需要借助其他的分析工具，但不可否认的是，debugger是程序员修bug奋斗之路上最坚实的后盾。代码出了问题，你能依靠的只有你自己的逻辑和你手里的调试工具。哦，当然，你也可以选择摇人，这个不在本文讨论范围之内。&lt;/p&gt;
+&lt;p&gt;我们都会用到debugger，它一般提供如下功能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;控制程序运行，如断点，单步执行等&lt;/li&gt;
+&lt;li&gt;查看，修改变量值&lt;/li&gt;
+&lt;li&gt;修改程序执行流程&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;调试功能我们常用，但就是因为它太常用了，是语言附属的基础设施，所以我们好像很少会去思考，它是如何实现的？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="quickjs" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/quickjs/"/>
+    
+    
+    <category term="quickjs" scheme="http://pengyz.com/tags/quickjs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重构版Launcher开发实践01：CEF篇</title>
+    <link href="http://pengyz.com/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/"/>
+    <id>http://pengyz.com/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/</id>
+    <published>2020-11-26T16:48:05.000Z</published>
+    <updated>2020-11-26T16:48:05.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;1-重构版Launcher的技术方案&quot;&gt;&lt;a href=&quot;#1-重构版Launcher的技术方案&quot; class=&quot;headerlink&quot; title=&quot;1. 重构版Launcher的技术方案&quot;&gt;&lt;/a&gt;1. 重构版Launcher的技术方案&lt;/h1&gt;&lt;h2 id=&quot;简单的对比&quot;&gt;&lt;a href=&quot;#简单的对比&quot; class=&quot;headerlink&quot; title=&quot;简单的对比&quot;&gt;&lt;/a&gt;简单的对比&lt;/h2&gt;&lt;p&gt;多厂商Launcher本身是一个使用QT作为界面库，CEF作为内嵌浏览器，使用C++语言进行开发的桌面程序。多厂商Launcher存在很多的问题，在决定重构之后，对后续的技术方案进行了一番考量，具体的对比如下：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;多厂商&lt;/th&gt;
+&lt;th&gt;重构版&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;Qt版本&lt;/td&gt;
+&lt;td&gt;5.6.3&lt;/td&gt;
+&lt;td&gt;5.12.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CEF版本&lt;/td&gt;
+&lt;td&gt;76.0.3809.162 (支持XP+)&lt;/td&gt;
+&lt;td&gt;86.0.4044.132 (支持win7+)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;VS版本&lt;/td&gt;
+&lt;td&gt;VS 2013&lt;/td&gt;
+&lt;td&gt;VS 2017&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;构建系统&lt;/td&gt;
+&lt;td&gt;VS工程+CMake&lt;/td&gt;
+&lt;td&gt;CMake&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;版本升级方式&lt;/td&gt;
+&lt;td&gt;大网易的补丁升级系统&lt;/td&gt;
+&lt;td&gt;ngl-pacman工具&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;打包方式&lt;/td&gt;
+&lt;td&gt;bash脚本和cmd脚本&lt;/td&gt;
+&lt;td&gt;bash脚本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="CEF" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/CEF/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="CEF" scheme="http://pengyz.com/tags/CEF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论程序员与最优解</title>
+    <link href="http://pengyz.com/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/"/>
+    <id>http://pengyz.com/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/</id>
+    <published>2018-04-06T15:23:54.000Z</published>
+    <updated>2018-04-06T15:23:54.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;问题的开端&quot;&gt;&lt;a href=&quot;#问题的开端&quot; class=&quot;headerlink&quot; title=&quot;问题的开端&quot;&gt;&lt;/a&gt;问题的开端&lt;/h1&gt;&lt;p&gt;一直以来，我都认为我算是一名合格的程序员，或者叫IT工程师。理由如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉基础的编程框架和编程语言技巧，能完成日常开发任务。&lt;/li&gt;
+&lt;li&gt;对工作保有热情，手脚麻利，有责任心。&lt;/li&gt;
+&lt;li&gt;一直在持续学习，享受编程并解决问题的过程。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但是最近工作中遇到一些事情，我开始意识到我自身存在的一些问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不善沟通，容易习惯性消极。&lt;/li&gt;
+&lt;li&gt;代码质量差，很少一遍通过。经常出错，排错花了很多时间。&lt;/li&gt;
+&lt;li&gt;解决问题的能力差，遇到不熟悉的问题经常不得要领，无法真正地独立解决难题。&lt;/li&gt;
+&lt;li&gt;讨厌写复杂逻辑，涉及到算法相关的问题就发蒙。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>转帖 NAT穿透的详细讲解及分析</title>
+    <link href="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/"/>
+    <id>http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/</id>
+    <published>2017-11-26T16:48:05.000Z</published>
+    <updated>2017-11-26T16:48:05.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这是一篇转帖，写的实在精彩。原贴出自&lt;em&gt;看雪论坛&lt;/em&gt;，原贴地址请 &lt;a href=&quot;http://bbs.pediy.com/thread-131961.htm&quot;&gt;戳这里&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果原作者对此转帖行为有任何异议，请联系本人撤销。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;什么是NAT？为什么要使用NAT？&quot;&gt;&lt;a href=&quot;#什么是NAT？为什么要使用NAT？&quot; class=&quot;headerlink&quot; title=&quot;什么是NAT？为什么要使用NAT？&quot;&gt;&lt;/a&gt;什么是NAT？为什么要使用NAT？&lt;/h1&gt;&lt;p&gt;NAT是将私有地址转换为合法IP地址的技术，通俗的讲就是将内网与内网通信时怎么将内网私有IP地址转换为可在网络中传播的合法IP地址。NAT的出现完美地解决了lP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。  &lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="NAT" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/NAT/"/>
+    
+    <category term="udp" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/NAT/udp/"/>
+    
+    
+    <category term="RakNet" scheme="http://pengyz.com/tags/RakNet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>优雅的智慧——听《硅谷来信》节目有感</title>
+    <link href="http://pengyz.com/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/"/>
+    <id>http://pengyz.com/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/</id>
+    <published>2017-10-22T14:14:09.000Z</published>
+    <updated>2017-10-22T14:14:09.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我是在去年订阅的《硅谷来信》，具体的月份已记不得，只记得天气很凉，大概是在十一月或者十二月。&lt;/p&gt;
+&lt;p&gt;这个栏目得到app上的一款付费内容，由硅谷投资人吴军老师每天分享一些话题进行深入讨论组成。开始只是觉着，自己需要学点东西，对这个节目的期待度也并没有多高。但是每天去听一篇，逐渐下来，直至今日，《硅谷来信》的所有节目播放完之后，才发觉，自己面前的是一座宝库。这些散落在艺术，职场，人生哲理，科学思维等等一系列主题中的内容，非常深刻地影响了我对这个世界方方面面的看法。在此非常感谢吴军老师的辛勤耕耘。&lt;/p&gt;
+&lt;p&gt;如果说我收获了什么，细细想来，会有很多，因为时间很长而且作者的在生活的方方面面都有不俗的见解，所以很难统一地论述整个过程中带给我的各种思考。但是我认为，最重要的一点大概就是：人需要拥有生活的智慧，它让生活本身变得更优雅。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL编程入门： 1.Ubuntu下开发环境搭建</title>
+    <link href="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
+    <published>2017-09-02T09:05:02.000Z</published>
+    <updated>2017-09-02T09:05:02.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;计算机图形学与OpenGL&quot;&gt;&lt;a href=&quot;#计算机图形学与OpenGL&quot; class=&quot;headerlink&quot; title=&quot;计算机图形学与OpenGL&quot;&gt;&lt;/a&gt;计算机图形学与OpenGL&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/279486?fr=aladdin&quot;&gt;计算机图形学&lt;/a&gt;主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年&lt;a href=&quot;https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E/207123?fr=aladdin&quot;&gt;虚拟现实(VR)&lt;/a&gt;和&lt;a href=&quot;https://baike.baidu.com/item/%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E/1889025&quot;&gt;增强现实(AR)&lt;/a&gt;的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。&lt;/p&gt;
+&lt;p&gt;在图形学编程中，计算机图形学是基础，其背后的数学原理指导我们如何将三维物体空间投射到二维屏幕空间并展现出真实的空间感。有了理论基础，我们就需要某种方法，将这种理论转化为切实的计算机程序，将画面加以呈现。这个过程中，程序员需要某种方式，可以和计算机的图形显卡进行通信，将显示数据送入显存，并告知显卡这些数据的含义，最终由显卡进行渲染，最终呈现出画面。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机图形学" scheme="http://pengyz.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    <category term="OpenGL" scheme="http://pengyz.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/OpenGL/"/>
+    
+    
+    <category term="计算机图形学" scheme="http://pengyz.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+    
+    <category term="OpenGL编程入门" scheme="http://pengyz.com/tags/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>跳转，执行，返回：从汇编看函数调用</title>
+    <link href="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
+    <id>http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/</id>
+    <published>2017-06-21T10:21:12.000Z</published>
+    <updated>2022-03-21T02:26:25.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Emacs or Vim? Just spacemacs !</title>
+    <link href="http://pengyz.com/2017/06/17/Emacs-or-Vim-Just-spacemacs/"/>
+    <id>http://pengyz.com/2017/06/17/Emacs-or-Vim-Just-spacemacs/</id>
+    <published>2017-06-16T17:37:50.000Z</published>
+    <updated>2017-06-16T17:37:50.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;其实很早之前就接触过emacs，大概是被&lt;strong&gt;Dr. 王垠&lt;/strong&gt;蛊惑到了，也许是自己本来就喜欢一些比较geek的东西来折腾，那时候开始尝试使用emacs。也学习过emacs的elisp，写过简单的函数，自己写过配置文件，但是自己主要的工作还是要在windows下完成，开发工具也主要是使用VS，所以emacs也就逐渐沦为了写org的工具。接触VIM大概是在大学的计算机课程上，彻底地被VIM的模式搞昏了头并对此深恶痛绝。&lt;/p&gt;
+&lt;p&gt;第一次打开emcas运行，还是挺失望的：丑陋的界面，简陋的功能，古怪的快捷键。它在我看来就像是上个世纪的产品，属于那些行将就木的垂垂老朽。但是还是耐下性子，从toturial开始一点点学起，尝试去记忆emcas的快捷键，学习它的buffer，window，mini buffer等等的概念。说实话，emacs能够满足每个diy狂人内心的渴望。有段时间还是挺沉迷emacs的，喜欢尝试各种的配置，在网上四处寻找个各种的配置，尝试给emacs套上各种的功能，把emacs配置成C++ IDE，配置成音乐播放器前端，配置成强大的terminal前端等等。期间也学了一点简单的elisp的编写，尝试自己对emacs进行更深度的定制。不得不说，elisp在我看来是一个古怪的语言，古怪的语法，古怪的括号嵌套，古怪的编程理念，其间种种都和自己接受过的编程概念格格不入。也许是自己实在不是一个能够沉下心来学习的人，始终无法掌握elisp语言的精髓。慢慢的发现，对emacs的研究仿佛永无止境，在lisp的大海里徜徉，却很少感受到自己有什么进步，逐渐也就失去了继续深入的动力。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Emacs" scheme="http://pengyz.com/categories/Emacs/"/>
+    
+    <category term="Vim" scheme="http://pengyz.com/categories/Emacs/Vim/"/>
+    
+    
+    <category term="编辑器" scheme="http://pengyz.com/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git简介-程序员的后悔药</title>
+    <link href="http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/"/>
+    <id>http://pengyz.com/2017/06/11/git%E7%AE%80%E4%BB%8B-%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E5%90%8E%E6%82%94%E8%8D%AF/</id>
+    <published>2017-06-11T09:56:19.000Z</published>
+    <updated>2017-06-11T09:56:19.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;从软件开发谈“后悔药”的必要性&quot;&gt;&lt;a href=&quot;#从软件开发谈“后悔药”的必要性&quot; class=&quot;headerlink&quot; title=&quot;从软件开发谈“后悔药”的必要性&quot;&gt;&lt;/a&gt;从软件开发谈“后悔药”的必要性&lt;/h1&gt;&lt;p&gt;每当我们作出一个决定，我们就必然要承担它带来的后果。很多时候，面对未来的不确定性，我们会作出错误的决定。这时我们往往追悔莫及。但是这个世界上却永远不存在“后悔药”。就目前的科技水平来看，我们无力操纵时空，篡改历史。&lt;/p&gt;
+&lt;p&gt;万幸的是，作为程序员，我们却有工具来在软件开发的过程中随时给自己安利一发“后悔药”尝尝咸淡。这种后悔药叫做“版本控制”。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="git" scheme="http://pengyz.com/categories/git/"/>
+    
+    
+    <category term="git" scheme="http://pengyz.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从底层看程序执行过程：寄存器，cpu和x86汇编简介</title>
+    <link href="http://pengyz.com/2017/06/04/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/"/>
+    <id>http://pengyz.com/2017/06/04/%E4%BB%8E%E5%BA%95%E5%B1%82%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%EF%BC%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8Ccpu%E5%92%8Cx86%E6%B1%87%E7%BC%96%E7%AE%80%E4%BB%8B/</id>
+    <published>2017-06-04T02:08:18.000Z</published>
+    <updated>2022-03-21T02:08:18.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本篇是我本人博客中的专题“追根溯源 从C++到汇编”中的开篇。这是我第一次尝试写一个系列的文章出来与大家分享。如果有什么疏漏，欢迎大家指正。&lt;/p&gt;
+&lt;p&gt;为了阐述C++和汇编的关系，我觉着有必要简单介绍下汇编知识和一些计算机的基本组成。本篇的内容尽量保持简短。本篇的目的是为了后续的讲解做一个基础性的铺垫与简介，点到即止。&lt;/p&gt;
+&lt;p&gt;本文假定读者没有任何汇编基础知识。如果有读者对汇编很熟悉，可以略过本篇，参看系列后续的文章。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程安全问题探讨-并发，同步和线程安全</title>
+    <link href="http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/"/>
+    <id>http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/</id>
+    <published>2017-05-01T12:20:00.000Z</published>
+    <updated>2017-05-01T12:20:00.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如果你不确定，请先停下来，自己考虑这个问题并审视你的代码，直到你确定答案是YES。如果我们不能保证基本的线程安全，那我们可能要面临一个定时炸弹：程序可能会在一个只有天知道的时间点崩溃。&lt;/p&gt;
+&lt;p&gt;很多人对这种多线程bug感到痛苦而绝望，因为它总在不经意间让你的程序变得一团糟。&lt;/p&gt;
+&lt;h1 id=&quot;为什么存在“线程安全”问题。&quot;&gt;&lt;a href=&quot;#为什么存在“线程安全”问题。&quot; class=&quot;headerlink&quot; title=&quot;为什么存在“线程安全”问题。&quot;&gt;&lt;/a&gt;为什么存在“线程安全”问题。&lt;/h1&gt;&lt;p&gt;从”线程”的语义上来说，可以理解为在一个进程中提供的多条代码执行路径。在概念上，进程是拥有资源的最小单位，线程是CPU调度的最小单位。在进程中，多个线程可以共享相同的资源。这种“共享”本身就带来了多线程编程中的&lt;strong&gt;线程安全&lt;/strong&gt;问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="C++" scheme="http://pengyz.com/categories/C/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="并发" scheme="http://pengyz.com/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+    <category term="线程安全" scheme="http://pengyz.com/tags/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论UE4学习的正确方法</title>
+    <link href="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/"/>
+    <id>http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/</id>
+    <published>2017-04-16T07:35:37.000Z</published>
+    <updated>2017-04-16T07:35:37.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;学习是一件快乐的事&quot;&gt;&lt;a href=&quot;#学习是一件快乐的事&quot; class=&quot;headerlink&quot; title=&quot;学习是一件快乐的事&quot;&gt;&lt;/a&gt;学习是一件快乐的事&lt;/h1&gt;&lt;p&gt;对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。&lt;/p&gt;
+&lt;p&gt;很多时候，学习使我们应对行业变化的一种方法和手段，为了跟得上这个迅速变化的行业，我们需要时刻关注行业热点并进行选择性的跟进，以期能够在职业道路上占得先机，又或者在自己的领域内进行深入学习，提升自己解决实际问题的能力，成为领域内的专家，才能升职加薪，让自己的财务更加自由。技术追求和金钱追求，在某些时候是可以统筹对待的。&lt;/p&gt;
+&lt;p&gt;但是抛开这些客观因素，我们还应该看到，学习本身在主观上就应该是一件快乐的事情。“To be a better man” 本身就对技术人员充满了诱惑力：这种诱惑力使我们拒绝了游戏，拒绝了网剧，拒绝了娱乐节目，把每天的时间抽出来花在对技术的追求上。在我看来，一个好的技术人员，他应该首先是乐于学习的，这样才能拥有不断前进的原动力。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="UE4学习笔记" scheme="http://pengyz.com/categories/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="自学" scheme="http://pengyz.com/tags/%E8%87%AA%E5%AD%A6/"/>
+    
+    <category term="UE4" scheme="http://pengyz.com/tags/UE4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UE4学习笔记</title>
+    <link href="http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2017-04-13T12:44:45.000Z</published>
+    <updated>2017-04-13T12:44:45.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一个小的专题系列，记录自己对UE4引擎的学习过程。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&quot; title=&quot;开篇&quot;&gt;开篇&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="UE4学习笔记" scheme="http://pengyz.com/categories/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="自学" scheme="http://pengyz.com/tags/%E8%87%AA%E5%AD%A6/"/>
+    
+    <category term="UE4" scheme="http://pengyz.com/tags/UE4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UE4学习笔记 开篇</title>
+    <link href="http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E5%BC%80%E7%AF%87/"/>
+    <id>http://pengyz.com/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20%E5%BC%80%E7%AF%87/</id>
+    <published>2017-04-13T08:09:41.000Z</published>
+    <updated>2017-04-13T08:09:41.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;关于本系列文章&quot;&gt;&lt;a href=&quot;#关于本系列文章&quot; class=&quot;headerlink&quot; title=&quot;关于本系列文章&quot;&gt;&lt;/a&gt;关于本系列文章&lt;/h1&gt;&lt;p&gt;本系列文章是我个人学习UE4游戏制作过程中一些随笔性质的记录性文章。因为我个人并不属于游戏行业但是对于自己动手做游戏又充满了兴趣，所以花了些时间了解了下一些游戏制作相关的内容。可能点点滴滴的东西都比较初级而且浅显，但是我会仔细地去记录自己学习的过程，希望也对后来者能够有所启发，这样也就达到了目的。&lt;/p&gt;
+&lt;p&gt;我个人也比较懒散，我也希望能够用分享知识的方式督促自己能够不断地学习。可日进一步，吾心足矣。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="UE4学习笔记" scheme="http://pengyz.com/categories/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="自学" scheme="http://pengyz.com/tags/%E8%87%AA%E5%AD%A6/"/>
+    
+    <category term="UE4" scheme="http://pengyz.com/tags/UE4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>追根溯源 从C++到汇编</title>
+    <link href="http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/"/>
+    <id>http://pengyz.com/2017/01/15/%E8%BF%BD%E6%A0%B9%E6%BA%AF%E6%BA%90-%E4%BB%8EC-%E5%88%B0%E6%B1%87%E7%BC%96/</id>
+    <published>2017-01-15T02:15:11.000Z</published>
+    <updated>2022-03-21T06:52:42.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;今天，我想讲的一个话题就是，作为一个C++程序员，&lt;strong&gt;如何从汇编层面理解C和C++&lt;strong&gt;。又或者是，&lt;/strong&gt;如何理解C++中的对象模型&lt;/strong&gt;，如何理解函数调用本身，如何增强程序的安全性等等。我想，这会是一个专题，在这里，我们会讨论一些更底层和更深入的话题。&lt;br&gt;我希望我能把我所掌握的东西，以一个更生动的形象展示给大家。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="http://pengyz.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="C++" scheme="http://pengyz.com/tags/C/"/>
+    
+    <category term="asm" scheme="http://pengyz.com/tags/asm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小议程序员的自我修养</title>
+    <link href="http://pengyz.com/2017/01/10/%E5%B0%8F%E8%AE%AE%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"/>
+    <id>http://pengyz.com/2017/01/10/%E5%B0%8F%E8%AE%AE%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/</id>
+    <published>2017-01-09T17:28:42.000Z</published>
+    <updated>2017-01-09T17:28:42.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;元旦过去，2016年已过，崭新的2017已至。作为一名程序员，在有过一段时间的从业经历后，我们有了一些收获，也新增了很多疑惑。在外行眼里，我们是一个奇怪而神秘的群体：终日对着电脑，钻研所谓的技术。也许有些不善言辞;也许会为了技术上的分歧面红耳赤;也许加班是一种生活的常态；也</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="自我修养" scheme="http://pengyz.com/tags/%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RakNet入门介绍</title>
+    <link href="http://pengyz.com/2016/09/07/RakNet%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://pengyz.com/2016/09/07/RakNet%E5%85%A5%E9%97%A8%E4%BB%8B%E7%BB%8D/</id>
+    <published>2016-09-07T13:00:14.000Z</published>
+    <updated>2016-09-07T13:00:14.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;RakNet简单介绍&quot;&gt;&lt;a href=&quot;#RakNet简单介绍&quot; class=&quot;headerlink&quot; title=&quot;RakNet简单介绍&quot;&gt;&lt;/a&gt;RakNet简单介绍&lt;/h1&gt;&lt;p&gt;最近由于项目需要简单看了一下RakNet。&lt;br&gt;这是一个C++开发的基于UDP的开源网络库，具有良好的跨平台特性，主要用于网络游戏的通信，也可以用在各种网络软件上用于处理网络通信。&lt;/p&gt;
+&lt;p&gt;总体来说这个库功能完善，提供可靠的UDP传输，完善的插件机制。项目托管在&lt;a href=&quot;https://github.com/OculusVR/RakNet&quot;&gt;github&lt;/a&gt;目前已停止更新。关于它的具体用法，可以参考官网的例子和文档。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="技术文档" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/"/>
+    
+    <category term="socket" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/socket/"/>
+    
+    <category term="udp" scheme="http://pengyz.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/socket/udp/"/>
+    
+    
+    <category term="RakNet" scheme="http://pengyz.com/tags/RakNet/"/>
+    
+  </entry>
+  
+</feed>

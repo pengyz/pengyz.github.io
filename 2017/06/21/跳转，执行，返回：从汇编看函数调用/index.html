@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跳转，执行，返回：从汇编看函数调用">
+<meta property="og:url" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-27-43.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_Paste_Image.png.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-38-52.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-39-04.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-10.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-21.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-57.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-41-33.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-32.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-40.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-56.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-44-51.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-45-50.png">
+<meta property="og:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-45-58.png">
+<meta property="article:published_time" content="2017-06-21T10:21:12.000Z">
+<meta property="article:modified_time" content="2022-03-21T02:26:25.000Z">
+<meta property="article:author" content="Alex Peng">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="asm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-27-43.png">
+
+
+<link rel="canonical" href="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/","path":"2017/06/21/跳转，执行，返回：从汇编看函数调用/","title":"跳转，执行，返回：从汇编看函数调用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>跳转，执行，返回：从汇编看函数调用 | Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%BB%A3%E7%A0%81%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%AF%B4%E8%B5%B7"><span class="nav-number">1.</span> <span class="nav-text">从代码的顺序执行说起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">函数调用中的一些细节说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">2.1.</span> <span class="nav-text">函数调用中的关键寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8PC"><span class="nav-number">2.1.1.</span> <span class="nav-text">程序计数器PC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%9D%80%E6%8C%87%E9%92%88%EF%BC%8C%E6%A0%88%E6%8C%87%E9%92%88%E5%92%8C%E7%A8%8B%E5%BA%8F%E6%A0%88"><span class="nav-number">2.1.2.</span> <span class="nav-text">基址指针，栈指针和程序栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E5%B9%B3%E8%A1%A1"><span class="nav-number">2.2.</span> <span class="nav-text">堆栈平衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E5%92%8C%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">函数的参数传递和调用约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">参数传递方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E6%A0%88%E5%B9%B3%E8%A1%A1%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.2.</span> <span class="nav-text">堆栈平衡方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%B8%A7%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A%E4%BB%8Eesp%E5%92%8Cebp%E8%AF%B4%E8%B5%B7"><span class="nav-number">2.4.</span> <span class="nav-text">栈帧的概念：从esp和ebp说起</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E4%B8%AD%E5%85%B3%E4%BA%8E%E2%80%9C%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E2%80%9D%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">汇编中关于“函数调用”的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E6%8C%87%E4%BB%A4-%E5%8E%8B%E6%A0%88%E5%92%8C%E8%B7%B3%E8%BD%AC"><span class="nav-number">3.1.</span> <span class="nav-text">call指令 压栈和跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ret%E6%8C%87%E4%BB%A4-%E8%BF%94%E5%9B%9E"><span class="nav-number">3.2.</span> <span class="nav-text">ret指令 返回</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%AE%9E%E9%99%85%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">从实际汇编代码看函数调用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E5%92%8C%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">4.1.</span> <span class="nav-text">程序源码和运行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88"><span class="nav-number">4.2.</span> <span class="nav-text">调用堆栈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">结束语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="跳转，执行，返回：从汇编看函数调用 | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          跳转，执行，返回：从汇编看函数调用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-06-21 18:21:12" itemprop="dateCreated datePublished" datetime="2017-06-21T18:21:12+08:00">2017-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-21 10:26:25" itemprop="dateModified" datetime="2022-03-21T10:26:25+08:00">2022-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。</p>
+<span id="more"></span>
+
+<h1 id="从代码的顺序执行说起"><a href="#从代码的顺序执行说起" class="headerlink" title="从代码的顺序执行说起"></a>从代码的顺序执行说起</h1><p>每一个程序员脑子里应该都有这么一种印象：“程序是顺序执行的”。这个观点其实和我们开篇所讲的cpu的流水线执行过程直接相关。<br>让我们再回忆一下脑海中关于函数调用的概念，也许会是这个样子：</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-27-43.png"><br>这里的“控制流转移”又是如何发生的呢？在解释这个之前，也许我们需要科普一点有关于汇编的知识。</p>
+<h1 id="函数调用中的一些细节说明"><a href="#函数调用中的一些细节说明" class="headerlink" title="函数调用中的一些细节说明"></a>函数调用中的一些细节说明</h1><h2 id="函数调用中的关键寄存器"><a href="#函数调用中的关键寄存器" class="headerlink" title="函数调用中的关键寄存器"></a>函数调用中的关键寄存器</h2><h3 id="程序计数器PC"><a href="#程序计数器PC" class="headerlink" title="程序计数器PC"></a>程序计数器PC</h3><p>程序计数器是一个计算机组成原理中讲过的概念，下面给出一个百度百科中的简单解释</p>
+<p>程序计数器是用于存放下一条指令所在单元的地址的地方。<br>当执行一条指令时，首先需要根据PC中存放的指令地址，将指令由内存取到指令寄存器中，此过程称为“取指令”。与此同时，PC中的地址或自动加1或由转移指针给出下一条指令的地址。此后经过分析指令，执行指令。完成第一条指令的执行，而后根据PC取出第二条指令的地址，如此循环，执行每一条指令。</p>
+<p>可以看到，程序计数器是一个cpu执行指令代码过程中的关键寄存器：它指向了当前计算机要执行的指令地址，CPU总是从程序计数器取出当前指令来执行。当指令执行后，程序计数器的值自动增加，指向下一条将要执行的指令。</p>
+<p>在x86汇编中，执行程序计数器功能的寄存器被叫做EIP，也叫作指令指针寄存器。</p>
+<h3 id="基址指针，栈指针和程序栈"><a href="#基址指针，栈指针和程序栈" class="headerlink" title="基址指针，栈指针和程序栈"></a>基址指针，栈指针和程序栈</h3><p>栈是程序设计中的一种经典数据结构，每个程序都拥有自己的程序栈。很重要的一点是，栈是向下生长的。所谓向下生长是指从内存高地址-&gt;低地址的路径延伸，那么就很明显了，栈有栈底和栈顶，那么栈顶的地址要比栈底低。对x86体系的CPU而言，其中<br>—&gt; 寄存器ebp（base pointer ）可称为“帧指针”或“基址指针”，其实语意是相同的。<br>—&gt; 寄存器esp（stack pointer）可称为“ 栈指针”。<br>在C和C++语言中，临时变量分配在栈中，临时变量拥有函数级的生命周期，即“在当前函数中有效，在函数外无效”。这种现象就是函数调用过程中的参数压栈，堆栈平衡所带来的。对于这种实现的细节，我们会在接下来的环节中详细讨论。</p>
+<h2 id="堆栈平衡"><a href="#堆栈平衡" class="headerlink" title="堆栈平衡"></a>堆栈平衡</h2><p>堆栈平衡这个概念指的是函数调完成后，要返还所有使用过的栈空间。这种说法可能有点抽象，我们可以举一个简单的例子来类比：<br>我们都知道函数的临时变量存放在栈中。那我们来看下面的代码，它是一个很简单的函数,用来交换传入的2个参数的值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> __stdcall <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a,<span class="type">int</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> c = a;</span><br><span class="line">  a = b;</span><br><span class="line">  b = c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，在这个函数中使用了一个临时变量int c;这个变量分配在栈中，我们可以简单的理解为，在声明临时变量c后，我们就向当前的程序栈中压入了一个int值：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> c = a; &lt;==&gt; <span class="built_in">push</span>(a);   <span class="comment">//简单粗暴，临时变量的声明理解为简单地向栈中push一个值。</span></span><br></pre></td></tr></table></figure>
+<p>那现在这个函数swap调用结束了，我们是否需要退栈，把之前临时变量c使用的栈空间返还回去？需要吗？不需要吗？<br>我们假设不需要，当我们频繁调用swap的时候，会发生什么？每次调用，程序栈都在 <strong>生长</strong>。直到栈满，我们就会收到<strong>stack overflow</strong>错误，程序挂掉了。<br>所以为了避免这种乌龙的事情发生，我们需要在函数调用结束后，退栈，把堆栈还原到函数调用前的状态，这些被pop掉的临时变量，自然也就失效了，这也解释了我们一直以来关于<strong>临时变量仅在当前函数内有效</strong>的认知。其实堆栈平衡这个概念本身比这种粗浅的理解要复杂的多，还应包括压栈参数的平衡，暂时我们可以简单地这样理解，后面再做详细说明。</p>
+<h2 id="函数的参数传递和调用约定"><a href="#函数的参数传递和调用约定" class="headerlink" title="函数的参数传递和调用约定"></a>函数的参数传递和调用约定</h2><p>函数的参数传递是一个参数压栈的过程。函数的所有参数，都会依次被push到栈中。那调用约定有是什么呢？<br>C和C++程序员应该对所谓的调用约定有一定的印象，就像下面这种代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> __stdcall <span class="title">add</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>函数声明中的__stdcall就是关于调用约定的声明。其中标准C函数的默认调用约定是__stdcall,C++全局函数和静态成员函数的默认调用约定是__cdecl，类的成员函数的调用约定是__thiscall。剩下的还有__fastcall，__naked等。</p>
+<p>为什么要用所谓的<strong>调用约定</strong>？调用约定其实是一种约定方式，它指明了函数调用中的参数传递方式和堆栈平衡方式。</p>
+<h3 id="参数传递方式"><a href="#参数传递方式" class="headerlink" title="参数传递方式"></a>参数传递方式</h3><p>还是之前那个例子，swap函数有2个参数，int a,int b。这两个参数，入栈的顺序谁先谁后？<br>其实是从左到右入栈还是从右到左入栈都可以，只要函数调用者和函数内部使用相同的顺序存取参数即可。在上述的所有调用约定中，参数总是从右到左压栈，也就是最后一个参数先入栈。我们可以使用一份伪代码描述这个过程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">push b;      //先压入参数b</span><br><span class="line">push a;      //再压入参数a</span><br><span class="line">call swap;  //调用swap函数</span><br></pre></td></tr></table></figure>
+<p>其实从这里我们就可以理解为什么在函数内部，不能改变函数外部参数的值：因为函数内部访问到的参数其实是压入栈的变量值，对它的修改只是修改了栈中的”副本”。指针和引用参数才能真正地改变外部变量的值。</p>
+<h3 id="堆栈平衡方式"><a href="#堆栈平衡方式" class="headerlink" title="堆栈平衡方式"></a>堆栈平衡方式</h3><p>因为函数调用过程中，参数需要压栈，所以在函数调用结束后，用于函数调用的压栈参数也需要退栈。那这个工作是交给调用者完成，还是在函数内部自己完成？其实两种都可以。调用者负责平衡堆栈的主要好处是可以实现可变参数（关于可变参数的话题，在此不做过多讨论。如果可能的话，我们可以以一篇单独的文章来讲这个问题），因为在参数可变的情况下，只有调用者才知道具体的压栈参数有几个。<br>下面列出了常见调用约定的堆栈平衡方式：</p>
+<table>
+<thead>
+<tr>
+<th>调用约定</th>
+<th>堆栈平衡方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__stdcall</td>
+<td>函数自己平衡</td>
+</tr>
+<tr>
+<td>__cdecl</td>
+<td>调用者负责平衡</td>
+</tr>
+<tr>
+<td>__thiscall</td>
+<td>调用者负责平衡</td>
+</tr>
+<tr>
+<td>__fastcall</td>
+<td>调用者负责平衡</td>
+</tr>
+<tr>
+<td>__naked</td>
+<td>编译器不负责平衡，由编写者自己负责</td>
+</tr>
+</tbody></table>
+<h2 id="栈帧的概念：从esp和ebp说起"><a href="#栈帧的概念：从esp和ebp说起" class="headerlink" title="栈帧的概念：从esp和ebp说起"></a>栈帧的概念：从esp和ebp说起</h2><p>为什么我们需要ebp和esp2个寄存器来访问栈？这种观念其实来自于函数的层级调用：函数A调用函数B，函数B调用函数C，函数C调用函数D…<br>这种调用可能会涉及非常多的层次。编译器需要保证在这种复杂的嵌套调用中，能够正确地处理每个函数调用的堆栈平衡。所以我们引入了2个寄存器：</p>
+<ol>
+<li><p>ebp指向了本次函数调用开始时的栈顶指针，它也是本次函数调用时的“栈底”（这里的意思是，在一次函数调用中，ebp向下是函数的临时变量使用的空间）。在函数调用开始时，我们会使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov ebp,esp </span><br></pre></td></tr></table></figure>
+<p>把当前的esp保存在ebp中。</p>
+</li>
+<li><p>esp，它指向当前的栈顶，它是动态变化的，随着我们申请更多的临时变量，esp值不断减小（正如前文所说，栈是向下生长的）。</p>
+</li>
+<li><p>函数调用结束，我们使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov esp,ebp</span><br></pre></td></tr></table></figure>
+<p>来还原之前保存的esp。<br>在函数调用过程中，ebp和esp之间的空间被称为本次函数调用的“栈帧”。函数调用结束后，处于栈帧之前的所有内容都是本次函数调用过程中分配的临时变量，都需要被“返还”。这样在概念上，给了函数调用一个更明显的分界。下图是一个程序运行的某一时刻的栈帧图：</p>
+</li>
+</ol>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_Paste_Image.png.png"></p>
+<h1 id="汇编中关于“函数调用”的实现"><a href="#汇编中关于“函数调用”的实现" class="headerlink" title="汇编中关于“函数调用”的实现"></a>汇编中关于“函数调用”的实现</h1><p>上面铺陈了很多的汇编层面的概念后，我们终于可以切回到我们本次的主题：函数调用。<br>函数调用其实可以看做4个过程，也就是本篇标题：</p>
+<ol>
+<li>压栈: 函数参数压栈，返回地址压栈</li>
+<li>跳转: 跳转到函数所在代码处执行</li>
+<li>执行: 执行函数代码</li>
+<li>返回: 平衡堆栈，找出之前的返回地址，跳转回之前的调用点之后，完成函数调用<h2 id="call指令-压栈和跳转"><a href="#call指令-压栈和跳转" class="headerlink" title="call指令 压栈和跳转"></a>call指令 压栈和跳转</h2>下面我们看一下函数调用指令</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x210000 call swap;</span><br><span class="line">0x210005 mov ecx,eax; </span><br></pre></td></tr></table></figure>
+<p>我们可以把它理解为2个指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">push 0x210005;</span><br><span class="line">jmp swap;</span><br></pre></td></tr></table></figure>
+<p>也就是，首先把call指令的下一条指令地址作为本次函数调用的返回地址压栈，然后使用jmp指令<strong>修改指令指针寄存器EIP</strong>，使cpu执行swap函数的指令代码。</p>
+<h2 id="ret指令-返回"><a href="#ret指令-返回" class="headerlink" title="ret指令 返回"></a>ret指令 返回</h2><p>汇编中有ret相关的指令，它表示取出当前栈顶值，作为返回地址，并将指令指针寄存器EIP修改为该值，实现函数返回。<br>下面给出一组示意图来演示函数的返回过程：</p>
+<ol>
+<li>当前EIP的值为0x210004，指向指令ret 4，程序需要返回</li>
+</ol>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-38-52.png"></p>
+<ol start="2">
+<li>执行ret指令，将当前esp指向的堆栈值当做返回地址，设置eip跳转到此处并弹出该值<br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-39-04.png"></li>
+</ol>
+<p>经过这两步，函数就返回到了调用处。</p>
+<h1 id="从实际汇编代码看函数调用"><a href="#从实际汇编代码看函数调用" class="headerlink" title="从实际汇编代码看函数调用"></a>从实际汇编代码看函数调用</h1><h2 id="程序源码和运行结果"><a href="#程序源码和运行结果" class="headerlink" title="程序源码和运行结果"></a>程序源码和运行结果</h2><p>源码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">main.cpp</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> __stdcall <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;before swap: a = %d, b = %d\r\n&quot;</span>, a, b);</span><br><span class="line">    <span class="built_in">swap</span>(a, b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;after swap: a = %d, b = %d\r\n&quot;</span>, a, b);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">void</span> __stdcall <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> c = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>程序运行结果：</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-10.png"><br>4.2 反汇编<br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-21.png"><br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-40-57.png"></p>
+<p>可以看到，在函数调用前，函数参数已被压栈，此时:</p>
+<blockquote>
+<p>EBP = 00AFFCAC<br>ESP = 00AFFBBC<br>EIP = 00BF1853</p>
+</blockquote>
+<p>我们按F11，进入函数内部，此时：<br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-41-33.png"><br>其实就是call swap指令的下一条指令地址，它就是本次函数调用的<strong>返回地址</strong>。<br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-32.png"><br>下面是一个swap函数的详细注释：</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-40.png"><br>当程序运行到ret 8时</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-42-56.png"><br>执行返回后：<br><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-44-51.png"></p>
+<p>在返回前，ESP = 00AFFBB8，返回后 ESP = 00AFFBC4<br>0x00AFFBC4 - 0x00AFFBB8 = 0xC<br>这里的数值是字节数，而我们知道，int是4字节长度。所以0xC/4 = 3<br>正好是2个压栈参数+一个返回地址。</p>
+<h2 id="调用堆栈"><a href="#调用堆栈" class="headerlink" title="调用堆栈"></a>调用堆栈</h2><p>调试程序的时候，我们经常关注的一个点就是VisualStudio显示给我们的“调用堆栈”功能，这次让我们来仔细看一下它：<br>我们重新执行一次程序，这次我们关注一下vs显示的调用堆栈，如下图</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-45-50.png"></p>
+<p>第一行是当前指令地址<br>第二行是外层调用者，我们双击它，跳转到如下地址：</p>
+<p><img src="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/IMG_2022-03-21-10-45-58.png"><br>也许这也是为什么这个功能被叫做“调用堆栈”的原因：它正是通过对程序栈的分析实现的。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>虽然我刻意压缩了很多的内容，但是为了把函数调用在汇编层面的实现问题解释清楚，本篇文章仍然很长。因为有太多的汇编前置知识需要解释，而我有不想脱离这个话题单独去谈论汇编，这样没有什么意义。<br>本篇作为追根溯源 从C++到汇编系列文章的第一篇“干货”，希望大家喜欢。写了这么多，难免有所疏漏，欢迎大家批评指正。<br>当然，作为一篇介绍性的文章，内容难免有所删减。比如，本文没有对ret n这种平衡方式做详细解释，也没有对各种汇编代码的含义做解释，还有引用参数的压栈方式，各种调用约定的具体使用情况和区别。当然，限于篇幅，有些东西无法面面俱到。但还是希望大家能够喜欢本篇文章。<br>你的鼓励，就是我最大的动力。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8?fr=aladdin">百度百科-程序计数器</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zsy2020314/article/details/9429707">c函数调用过程原理及函数栈帧分析</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/asm/" rel="tag"># asm</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/06/17/Emacs-or-Vim-Just-spacemacs/" rel="prev" title="Emacs or Vim? Just spacemacs !">
+                  <i class="fa fa-angle-left"></i> Emacs or Vim? Just spacemacs !
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="next" title="OpenGL编程入门： 1.Ubuntu下开发环境搭建">
+                  OpenGL编程入门： 1.Ubuntu下开发环境搭建 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

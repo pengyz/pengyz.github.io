@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我的个人技术随笔">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex的技术博客">
+<meta property="og:url" content="http://pengyz.com/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="我的个人技术随笔">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Alex Peng">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://pengyz.com/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Alex的技术博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2024/07/08/draft/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/08/draft/" class="post-title-link" itemprop="url">draft</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-08 23:49:13" itemprop="dateCreated datePublished" datetime="2024-07-08T23:49:13+08:00">2024-07-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">前人的智慧结晶——有感于软件设计模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-13 21:49:45" itemprop="dateCreated datePublished" datetime="2022-03-13T21:49:45+08:00">2022-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="软件开发面临的问题"><a href="#软件开发面临的问题" class="headerlink" title="软件开发面临的问题"></a>软件开发面临的问题</h1><p>对于程序员来说，使用程序解决现实生活中的各种实际问题是我们的主要任务。</p>
+<p>在软件行业发展的早期，受限于硬件性能和计算机的普及程度，程序的规模都很小，解决的也都是一些相对简单的问题。在这个时期，结构化的程序设计被认为是软件开发的最佳实践。我们用一个个函数和变量来组织程序，以函数组织功能，以函数间的相互调用来组织起更复杂的逻辑，解决更实际的问题。</p>
+<p>但是随着IT行业的发展，在摩尔定律之下，硬件性能已经有了飞跃式的提升，软件所关注问题的复杂度也在成倍提升。但是这里存在一个矛盾点：机器可以处理的问题复杂度是远超人脑的，随着硬件性能的提升，这个差距还会进一步放大。这种急速膨胀的软件复杂度给程序员造成了沉重的脑力负担。所以IT圈发明了高层抽象，各种应用开发框架，编程范式，编程思想，用以缓解这种越发尖锐的问题。</p>
+<p>设计模式也是其中的一种重要的解决方案，在经典著作《设计模式 可复用面向对象软件的基础》一书中，Gof对前人的智慧进行了总结，提出了23种被广泛使用的设计模式并对它们进行了深入探讨。</p>
+<p>本文中我们并不对设计模式本身进行探讨，感兴趣的同学可以去通读设计模式全书，相信会大有裨益。我们在本文中所要讲述的是我自己对对设计模式的几点思考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/13/%E5%89%8D%E4%BA%BA%E7%9A%84%E6%99%BA%E6%85%A7%E7%BB%93%E6%99%B6%E2%80%94%E2%80%94%E6%9C%89%E6%84%9F%E4%BA%8E%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2022/03/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/" class="post-title-link" itemprop="url">编程随想录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-11 18:20:03" itemprop="dateCreated datePublished" datetime="2022-03-11T18:20:03+08:00">2022-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-13 18:20:03" itemprop="dateModified" datetime="2022-03-13T18:20:03+08:00">2022-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="关于本系列"><a href="#关于本系列" class="headerlink" title="关于本系列"></a>关于本系列</h1><p>时间总是过得比我们预想中的快，从2012年开始实习算起，我作为程序员的职业生涯也走到了第十个年头。<br>十年总是一个值得我们停下来思考和总结的时间节点。这其中发生了很多的事情，我的生活也与十年前有了天翻地覆的不同。所以我想留下点属于我自己的，关于编程的思考。</p>
+<p>在计划中，这会是一个系列，主要聊编程相关的事情，留下自己对程序员的职业思考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/11/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">quickjs调试机制实现解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-17 20:43:21" itemprop="dateCreated datePublished" datetime="2021-09-17T20:43:21+08:00">2021-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/quickjs/" itemprop="url" rel="index"><span itemprop="name">quickjs</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对调试器的最初印象"><a href="#对调试器的最初印象" class="headerlink" title="对调试器的最初印象"></a>对调试器的最初印象</h1><p>每个刚入行的程序员都有过对调试器一知半解的时候，那时我们使用 <strong>printf</strong>，<strong>console.log</strong>, <strong>System.out.println</strong> 等进行错误定位，统称<strong>打印输出调试法</strong>，这个方法至今在服务器后端等无法停机更无法挂调试器的地方大行其道，我们叫它<strong>log日志</strong>。<br>当我们工作了一段时间之后，逐渐发现了编程世界的复杂性，有些问题无法通过简单的打印来定位：</p>
+<ol>
+<li>程序内某个变量的值被改掉了，我想知道是哪里改的</li>
+<li>两个相同的组件，一个表现正常一个不正常，why?</li>
+<li>程序存在死锁或其他多线程静态条件，怎么定位和修复？</li>
+<li>我的程序内存泄露了，怎么办</li>
+</ol>
+<p>上面列举的一些情况有些可以借助debugger，有些如内存泄露，还需要借助其他的分析工具，但不可否认的是，debugger是程序员修bug奋斗之路上最坚实的后盾。代码出了问题，你能依靠的只有你自己的逻辑和你手里的调试工具。哦，当然，你也可以选择摇人，这个不在本文讨论范围之内。</p>
+<p>我们都会用到debugger，它一般提供如下功能：</p>
+<ol>
+<li>控制程序运行，如断点，单步执行等</li>
+<li>查看，修改变量值</li>
+<li>修改程序执行流程</li>
+</ol>
+<p>调试功能我们常用，但就是因为它太常用了，是语言附属的基础设施，所以我们好像很少会去思考，它是如何实现的？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/17/quickjs%E8%B0%83%E8%AF%95%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/" class="post-title-link" itemprop="url">重构版Launcher开发实践01：CEF篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-27 00:48:05" itemprop="dateCreated datePublished" datetime="2020-11-27T00:48:05+08:00">2020-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/CEF/" itemprop="url" rel="index"><span itemprop="name">CEF</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-重构版Launcher的技术方案"><a href="#1-重构版Launcher的技术方案" class="headerlink" title="1. 重构版Launcher的技术方案"></a>1. 重构版Launcher的技术方案</h1><h2 id="简单的对比"><a href="#简单的对比" class="headerlink" title="简单的对比"></a>简单的对比</h2><p>多厂商Launcher本身是一个使用QT作为界面库，CEF作为内嵌浏览器，使用C++语言进行开发的桌面程序。多厂商Launcher存在很多的问题，在决定重构之后，对后续的技术方案进行了一番考量，具体的对比如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>多厂商</th>
+<th>重构版</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qt版本</td>
+<td>5.6.3</td>
+<td>5.12.6</td>
+</tr>
+<tr>
+<td>CEF版本</td>
+<td>76.0.3809.162 (支持XP+)</td>
+<td>86.0.4044.132 (支持win7+)</td>
+</tr>
+<tr>
+<td>VS版本</td>
+<td>VS 2013</td>
+<td>VS 2017</td>
+</tr>
+<tr>
+<td>构建系统</td>
+<td>VS工程+CMake</td>
+<td>CMake</td>
+</tr>
+<tr>
+<td>版本升级方式</td>
+<td>大网易的补丁升级系统</td>
+<td>ngl-pacman工具</td>
+</tr>
+<tr>
+<td>打包方式</td>
+<td>bash脚本和cmd脚本</td>
+<td>bash脚本</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/27/%E9%87%8D%E6%9E%84%E7%89%88Launcher%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9ACEF%E7%AF%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/" class="post-title-link" itemprop="url">论程序员与最优解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-06 23:23:54" itemprop="dateCreated datePublished" datetime="2018-04-06T23:23:54+08:00">2018-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="问题的开端"><a href="#问题的开端" class="headerlink" title="问题的开端"></a>问题的开端</h1><p>一直以来，我都认为我算是一名合格的程序员，或者叫IT工程师。理由如下：</p>
+<ol>
+<li>熟悉基础的编程框架和编程语言技巧，能完成日常开发任务。</li>
+<li>对工作保有热情，手脚麻利，有责任心。</li>
+<li>一直在持续学习，享受编程并解决问题的过程。</li>
+</ol>
+<p>但是最近工作中遇到一些事情，我开始意识到我自身存在的一些问题：</p>
+<ol>
+<li>不善沟通，容易习惯性消极。</li>
+<li>代码质量差，很少一遍通过。经常出错，排错花了很多时间。</li>
+<li>解决问题的能力差，遇到不熟悉的问题经常不得要领，无法真正地独立解决难题。</li>
+<li>讨厌写复杂逻辑，涉及到算法相关的问题就发蒙。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/04/06/%E8%AE%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E4%B8%8E%E6%9C%80%E4%BC%98%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">转帖 NAT穿透的详细讲解及分析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-11-27 00:48:05" itemprop="dateCreated datePublished" datetime="2017-11-27T00:48:05+08:00">2017-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/NAT/" itemprop="url" rel="index"><span itemprop="name">NAT</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/NAT/udp/" itemprop="url" rel="index"><span itemprop="name">udp</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这是一篇转帖，写的实在精彩。原贴出自<em>看雪论坛</em>，原贴地址请 <a target="_blank" rel="noopener" href="http://bbs.pediy.com/thread-131961.htm">戳这里</a> </p>
+<p><strong>如果原作者对此转帖行为有任何异议，请联系本人撤销。</strong></p>
+<h1 id="什么是NAT？为什么要使用NAT？"><a href="#什么是NAT？为什么要使用NAT？" class="headerlink" title="什么是NAT？为什么要使用NAT？"></a>什么是NAT？为什么要使用NAT？</h1><p>NAT是将私有地址转换为合法IP地址的技术，通俗的讲就是将内网与内网通信时怎么将内网私有IP地址转换为可在网络中传播的合法IP地址。NAT的出现完美地解决了lP地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/11/27/NAT%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8A%E5%88%86%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/" class="post-title-link" itemprop="url">优雅的智慧——听《硅谷来信》节目有感</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-22 22:14:09" itemprop="dateCreated datePublished" datetime="2017-10-22T22:14:09+08:00">2017-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我是在去年订阅的《硅谷来信》，具体的月份已记不得，只记得天气很凉，大概是在十一月或者十二月。</p>
+<p>这个栏目得到app上的一款付费内容，由硅谷投资人吴军老师每天分享一些话题进行深入讨论组成。开始只是觉着，自己需要学点东西，对这个节目的期待度也并没有多高。但是每天去听一篇，逐渐下来，直至今日，《硅谷来信》的所有节目播放完之后，才发觉，自己面前的是一座宝库。这些散落在艺术，职场，人生哲理，科学思维等等一系列主题中的内容，非常深刻地影响了我对这个世界方方面面的看法。在此非常感谢吴军老师的辛勤耕耘。</p>
+<p>如果说我收获了什么，细细想来，会有很多，因为时间很长而且作者的在生活的方方面面都有不俗的见解，所以很难统一地论述整个过程中带给我的各种思考。但是我认为，最重要的一点大概就是：人需要拥有生活的智慧，它让生活本身变得更优雅。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/10/22/%E4%BC%98%E9%9B%85%E7%9A%84%E6%99%BA%E6%85%A7%E2%80%94%E2%80%94%E5%90%AC%E3%80%8A%E7%A1%85%E8%B0%B7%E6%9D%A5%E4%BF%A1%E3%80%8B%E8%8A%82%E7%9B%AE%E6%9C%89%E6%84%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">OpenGL编程入门： 1.Ubuntu下开发环境搭建</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-09-02 17:05:02" itemprop="dateCreated datePublished" datetime="2017-09-02T17:05:02+08:00">2017-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">计算机图形学</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/OpenGL/" itemprop="url" rel="index"><span itemprop="name">OpenGL</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="计算机图形学与OpenGL"><a href="#计算机图形学与OpenGL" class="headerlink" title="计算机图形学与OpenGL"></a>计算机图形学与OpenGL</h1><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/279486?fr=aladdin">计算机图形学</a>主要研究如何在计算机中显示丰富多彩的二维和三维图形。受益于计算机图形学的发展和图形硬件性能的飞速提升，各种游戏大作的绚丽画面令人瞠目结舌。而近两年<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E/207123?fr=aladdin">虚拟现实(VR)</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A2%9E%E5%BC%BA%E7%8E%B0%E5%AE%9E/1889025">增强现实(AR)</a>的兴起，配合着早已到来的移动互联网时代，更是让人们看到了计算机图形学所带来的未来科技的魅力。</p>
+<p>在图形学编程中，计算机图形学是基础，其背后的数学原理指导我们如何将三维物体空间投射到二维屏幕空间并展现出真实的空间感。有了理论基础，我们就需要某种方法，将这种理论转化为切实的计算机程序，将画面加以呈现。这个过程中，程序员需要某种方式，可以和计算机的图形显卡进行通信，将显示数据送入显存，并告知显卡这些数据的含义，最终由显卡进行渲染，最终呈现出画面。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/09/02/OpenGL%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8%EF%BC%9A-1-Ubuntu%E4%B8%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">跳转，执行，返回：从汇编看函数调用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-06-21 18:21:12" itemprop="dateCreated datePublished" datetime="2017-06-21T18:21:12+08:00">2017-06-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-21 10:26:25" itemprop="dateModified" datetime="2022-03-21T10:26:25+08:00">2022-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>从本篇开始，我们讨论一些高级语言中的基础设施：堆栈，函数调用，变量生命周期等等话题。因为这里本身会涉及到比较多的汇编层面的基础概念。为了向大家说明汇编层的函数调用实现细节，无奈我只能罗列出很多汇编上的概念，因为本文假定读者不需要具有任何汇编知识。我讨厌长篇大论，但本篇的解释可能仍然不够明晰。在此为自己知识的浅薄表示歉意。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/06/21/%E8%B7%B3%E8%BD%AC%EF%BC%8C%E6%89%A7%E8%A1%8C%EF%BC%8C%E8%BF%94%E5%9B%9E%EF%BC%9A%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

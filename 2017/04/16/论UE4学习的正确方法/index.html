@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pengyz.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="学习是一件快乐的事对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。 很多时候，学习使我们应对行业变化的一种方法和手段，为了跟得上这个迅速变化的行业，我们需要时刻关注行业热点并进行选择性的跟进，以期能够在职业道路上占得先机，又或者在自己的领域内进行深入学习，提升自己解决实际问题的能力，成为领域内的专家，才能升职加薪，让自己的财务更加自由。技术追求和金钱追求，在某些时候是可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论UE4学习的正确方法">
+<meta property="og:url" content="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:description" content="学习是一件快乐的事对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。 很多时候，学习使我们应对行业变化的一种方法和手段，为了跟得上这个迅速变化的行业，我们需要时刻关注行业热点并进行选择性的跟进，以期能够在职业道路上占得先机，又或者在自己的领域内进行深入学习，提升自己解决实际问题的能力，成为领域内的专家，才能升职加薪，让自己的财务更加自由。技术追求和金钱追求，在某些时候是可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95.jpg">
+<meta property="article:published_time" content="2017-04-16T07:35:37.000Z">
+<meta property="article:modified_time" content="2017-04-16T07:35:37.000Z">
+<meta property="article:author" content="Alex Peng">
+<meta property="article:tag" content="自学">
+<meta property="article:tag" content="UE4">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95.jpg">
+
+
+<link rel="canonical" href="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/","path":"2017/04/16/论UE4学习的正确方法/","title":"论UE4学习的正确方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论UE4学习的正确方法 | Alex的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Alex的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E6%98%AF%E4%B8%80%E4%BB%B6%E5%BF%AB%E4%B9%90%E7%9A%84%E4%BA%8B"><span class="nav-number">1.</span> <span class="nav-text">学习是一件快乐的事</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E5%AD%A6%E4%B9%A0%E8%83%BD%E5%8A%9B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">自我学习能力的重要性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%A7%84%E5%88%92"><span class="nav-number">3.</span> <span class="nav-text">我个人学习规划</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+      src="/images/avata.png">
+  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <div class="site-description" itemprop="description">我的个人技术随笔</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pengyz" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pengyz" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:orangekbb@gmail.com" title="E-Mail → mailto:orangekbb@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://pengyz.com/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avata.png">
+      <meta itemprop="name" content="Alex Peng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="description" content="我的个人技术随笔">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="论UE4学习的正确方法 | Alex的技术博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论UE4学习的正确方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-16 15:35:37" itemprop="dateCreated datePublished" datetime="2017-04-16T15:35:37+08:00">2017-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">UE4学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="学习是一件快乐的事"><a href="#学习是一件快乐的事" class="headerlink" title="学习是一件快乐的事"></a>学习是一件快乐的事</h1><p>对于以为以技术谋生的程序员来说，自我学习是我们职业生涯中一直面对的一个问题。</p>
+<p>很多时候，学习使我们应对行业变化的一种方法和手段，为了跟得上这个迅速变化的行业，我们需要时刻关注行业热点并进行选择性的跟进，以期能够在职业道路上占得先机，又或者在自己的领域内进行深入学习，提升自己解决实际问题的能力，成为领域内的专家，才能升职加薪，让自己的财务更加自由。技术追求和金钱追求，在某些时候是可以统筹对待的。</p>
+<p>但是抛开这些客观因素，我们还应该看到，学习本身在主观上就应该是一件快乐的事情。“To be a better man” 本身就对技术人员充满了诱惑力：这种诱惑力使我们拒绝了游戏，拒绝了网剧，拒绝了娱乐节目，把每天的时间抽出来花在对技术的追求上。在我看来，一个好的技术人员，他应该首先是乐于学习的，这样才能拥有不断前进的原动力。</p>
+<span id="more"></span>
+
+<h1 id="自我学习能力的重要性"><a href="#自我学习能力的重要性" class="headerlink" title="自我学习能力的重要性"></a>自我学习能力的重要性</h1><p>经济学领域经常会讲<strong>成本是放弃了的最大代价</strong>。每当我们选择了花时间学习某项技术的时候，意味着我们花费了时间，这个代价不可谓不大。我们花费了周末的一整个下午用来学习，可能意味着我们为此放弃了和女朋友的午后漫步，放弃了本来可以进行的长跑健身，放弃了和朋友约时间聚餐，放弃了一场精彩的电影，放弃了一个慵懒惬意的午觉等等，不一而足。</p>
+<p>正是基于这个理解，我们才讲，自我学习的能力尤为重要。拥有一个高效的学习方式，意味着我们可以花更少的时间就可以掌握一门新的技术，意味着我们可以把节约下来的时间用来享受生活。任何时候，生活是具体的，我们的最终追求，永远是让自己的生活更舒适而精彩。这其中，包括了自我学习的成就感，它是我们达成自我认同的一种方式，这种精神追求本身也从属于我们的生活。</p>
+<p>所以，正确的学习方法，在提高效率的同时，也反馈出我们对卓越和高品质生活的进一步追求。</p>
+<h1 id="我个人学习规划"><a href="#我个人学习规划" class="headerlink" title="我个人学习规划"></a>我个人学习规划</h1><img src="/2017/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/04/16/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95/%E8%AE%BAUE4%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E6%B3%95.jpg" class title="论UE4学习的正确方法">
+
+
+<p>我个人会按照这份思维导图来做，其实很多时候，我们所渴望的东西，就隐藏在持之以恒的背后。优秀属于那些以强大的内在驱动力把握住时间的人。愿自己也能成为一个优秀而有趣的人。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%87%AA%E5%AD%A6/" rel="tag"># 自学</a>
+              <a href="/tags/UE4/" rel="tag"># UE4</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/13/UE4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="UE4学习笔记">
+                  <i class="fa fa-angle-left"></i> UE4学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/" rel="next" title="线程安全问题探讨-并发，同步和线程安全">
+                  线程安全问题探讨-并发，同步和线程安全 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2016 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
