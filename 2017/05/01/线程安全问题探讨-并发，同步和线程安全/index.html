@@ -23,12 +23,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全问题探讨-并发，同步和线程安全">
 <meta property="og:url" content="http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/index.html">
-<meta property="og:site_name" content="Alex的技术博客">
+<meta property="og:site_name" content="Pengyz的技术博客">
 <meta property="og:description" content="如果你不确定，请先停下来，自己考虑这个问题并审视你的代码，直到你确定答案是YES。如果我们不能保证基本的线程安全，那我们可能要面临一个定时炸弹：程序可能会在一个只有天知道的时间点崩溃。 很多人对这种多线程bug感到痛苦而绝望，因为它总在不经意间让你的程序变得一团糟。 为什么存在“线程安全”问题。从”线程”的语义上来说，可以理解为在一个进程中提供的多条代码执行路径。在概念上，进程是拥有资源的最小单位">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-05-01T12:20:00.000Z">
 <meta property="article:modified_time" content="2017-05-01T12:20:00.000Z">
-<meta property="article:author" content="Alex Peng">
+<meta property="article:author" content="Yaozong Peng">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="并发">
 <meta property="article:tag" content="线程安全">
@@ -42,7 +42,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://pengyz.com/2017/05/01/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E6%8E%A2%E8%AE%A8-%E5%B9%B6%E5%8F%91%EF%BC%8C%E5%90%8C%E6%AD%A5%E5%92%8C%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/","path":"2017/05/01/线程安全问题探讨-并发，同步和线程安全/","title":"线程安全问题探讨-并发，同步和线程安全"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>线程安全问题探讨-并发，同步和线程安全 | Alex的技术博客</title>
+<title>线程安全问题探讨-并发，同步和线程安全 | Pengyz的技术博客</title>
   
 
 
@@ -55,7 +55,7 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Alex的技术博客" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="Pengyz的技术博客" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -76,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Alex的技术博客</p>
+      <p class="site-title">Pengyz的技术博客</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">不忘初心，方得始终</p>
@@ -91,7 +91,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
   </ul>
 </nav>
 
@@ -122,16 +122,16 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Alex Peng"
+    <img class="site-author-image" itemprop="image" alt="Yaozong Peng"
       src="/images/avata.png">
-  <p class="site-author-name" itemprop="name">Alex Peng</p>
+  <p class="site-author-name" itemprop="name">Yaozong Peng</p>
   <div class="site-description" itemprop="description">我的个人技术随笔</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -181,16 +181,16 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avata.png">
-      <meta itemprop="name" content="Alex Peng">
+      <meta itemprop="name" content="Yaozong Peng">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alex的技术博客">
+      <meta itemprop="name" content="Pengyz的技术博客">
       <meta itemprop="description" content="我的个人技术随笔">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="线程安全问题探讨-并发，同步和线程安全 | Alex的技术博客">
+      <meta itemprop="name" content="线程安全问题探讨-并发，同步和线程安全 | Pengyz的技术博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -316,7 +316,7 @@
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">Alex Peng</span>
+    <span class="author" itemprop="copyrightHolder">Yaozong Peng</span>
   </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
