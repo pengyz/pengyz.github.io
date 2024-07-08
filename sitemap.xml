@@ -218,7 +218,42 @@
 
   
   <url>
+    <loc>http://pengyz.com/tags/%E6%99%AE%E5%90%89%E5%B2%9B/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/%E5%87%BA%E5%9B%BD%E6%B8%B8/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://pengyz.com/tags/C/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/%E5%8F%8D%E5%B0%84/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/QT/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/socket/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -232,6 +267,13 @@
   </url>
   
   <url>
+    <loc>http://pengyz.com/tags/Chrome-DevTools-Protocol/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://pengyz.com/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -239,7 +281,35 @@
   </url>
   
   <url>
+    <loc>http://pengyz.com/tags/%E5%B9%B4%E6%9C%AB/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/%E5%9B%9E%E5%BF%86/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/2016/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://pengyz.com/tags/%E9%98%B3%E5%85%89/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/tags/%E5%B9%B8%E7%A6%8F%E6%84%9F/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -339,7 +409,21 @@
 
   
   <url>
+    <loc>http://pengyz.com/categories/%E6%B8%B8%E8%AE%B0/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://pengyz.com/categories/C/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/categories/QT/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -361,6 +445,27 @@
   
   <url>
     <loc>http://pengyz.com/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/categories/%E7%BC%96%E7%A8%8B%E9%9A%8F%E6%83%B3%E5%BD%95/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/socket%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2024-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://pengyz.com/categories/%E6%8A%80%E6%9C%AF/C/</loc>
     <lastmod>2024-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
